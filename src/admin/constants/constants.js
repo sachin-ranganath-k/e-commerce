@@ -17,3 +17,9 @@ export const DashboardTable = {
   ORDERED_BY: "Ordered By",
   SHOP_ADDRESS:"Shop Address"
 };
+
+export const addCategory={
+  ADD_CATEGORY_TITLE:"Add Category",
+  ENTER_CATEGORY:"Enter Category",
+  ADD_CATEGORY:"Add"
+}

@@ -21,7 +21,7 @@ const AdminLogin = () => {
   const admins = useSelector((state) => state.adminList);
   const loginApiFailure = useSelector((state) => state.adminLoginApiStatus);
   const [invalidCreds, setInvalidCreds] = useState(false);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const [inputFields, setInputFields] = useState({
     adminEmail: "",
@@ -30,6 +30,7 @@ const AdminLogin = () => {
 
   useEffect(() => {
     dispatch(fetchAdmins());
+    sessionStorage.setItem("loginSuccess", "No");
   }, []);
 
   const handleFields = (e) => {
@@ -41,11 +42,12 @@ const AdminLogin = () => {
   };
 
   const { adminEmail, adminPassword } = inputFields;
-
+  console.log(admins);
   const submitData = () => {
     for (const adminData of admins) {
       if (adminData?.email_id === adminEmail) {
-        navigate('/dashboard')
+        navigate("/dashboard");
+        sessionStorage.setItem("loginSuccess", "Yes")
         return;
       }
     }

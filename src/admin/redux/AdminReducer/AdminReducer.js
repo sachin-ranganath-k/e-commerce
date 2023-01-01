@@ -1,11 +1,13 @@
 import {
   FETCH_ADMIN,
   ADMIN_LOGIN_FAILURE,
+  SHOW_CATEGORIES,
 } from "../AdminActions/AdminActionConstants";
 
 const initialState = {
   adminList: [],
   adminLoginApiStatus: "",
+  AllCategoriesList:[]
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -21,6 +23,13 @@ const AdminReducer = (state = initialState, action) => {
         ...state,
         adminLoginApiStatus: action.payload,
       };
+
+      case SHOW_CATEGORIES:
+      return {
+        ...state,
+        AllCategoriesList: action.payload,
+      };
+
 
     default:
       return state;
