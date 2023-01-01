@@ -1,5 +1,6 @@
 import React from 'react'
-import AdminSideBar from './AdminSideBar'
+import AdminSideBar from './SideBar/AdminSideBar'
+
 
 const Dashboard = () => {
   return (
