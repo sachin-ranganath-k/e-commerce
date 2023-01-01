@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Cards from "../Cards/Cards";
+import { Dashboard } from "../../../constants/constants";
 import CardsParent from "../Cards/CardsParent";
-import { SideBarElements } from "./SideBarElements";
+import AdminFooter from "../Footer/Footer";
+import TodayOrdersTable from "../Tables/TodayOrders";
+
+
 
 const AdminSideBar = () => {
   return (
@@ -170,7 +173,7 @@ const AdminSideBar = () => {
 
               {/* End of Cards */}
 
-              <div className="row">
+              {/* <div className="row">
                 <div className="col-xl-6">
                   <div className="card mb-4">
                     <div className="card-header">
@@ -197,71 +200,23 @@ const AdminSideBar = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
+
+            {/* Today orders table */}
               <div className="card mb-4">
                 <div className="card-header">
                   <i className="fas fa-table me-1"></i>
-                  DataTable Example
+                 {Dashboard.TODAY_ORDERS}
                 </div>
                 <div className="card-body">
-                  <table id="datatablesSimple">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                      </tr>
-                    </thead>
-                    <tfoot>
-                      <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                      </tr>
-                    </tfoot>
-                    <tbody>
-                      <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                      </tr>
-                      <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <TodayOrdersTable />
                 </div>
               </div>
+            {/* End of Today orders table */}
+          
             </div>
           </main>
-          <footer className="py-4 bg-light mt-auto">
-            <div className="container-fluid px-4">
-              <div className="d-flex align-items-center justify-content-between small">
-                <div className="text-muted">
-                  Copyright &copy; Your Website 2022
-                </div>
-                <div>
-                  <a href="#">Privacy Policy</a>
-                  &middot;
-                  <a href="#">Terms &amp; Conditions</a>
-                </div>
-              </div>
-            </div>
-          </footer>
+          <AdminFooter />
         </div>
       </div>
     </div>
