@@ -41,6 +41,7 @@ const AddShowCategory = () => {
       return false;
     }
 
+  if(allCategories.length>0){
     for (const a of allCategories) {
       if (a.category_name === category) {
         setCategoryExist(true);
@@ -50,6 +51,8 @@ const AddShowCategory = () => {
         return;
       }
     }
+  }
+   
 
     dispatch(addCategory(JSON.stringify(submitCat)));
     setTimeout(() => {
