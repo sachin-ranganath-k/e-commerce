@@ -19,7 +19,9 @@ const AddShowCategory = () => {
   const theme = createTheme();
   const dispatch = useDispatch();
   const allCategories = useSelector((state) => state.AllCategoriesList);
-  const categoryAddedSuccess = useSelector((state) => state.newCategoryAddedSuccess);
+  const categoryAddedSuccess = useSelector(
+    (state) => state.newCategoryAddedSuccess
+  );
   const [category, setCategory] = useState("");
   const [categoryError, setCategoryError] = useState(false);
   const [categoryExist, setCategoryExist] = useState(false);
@@ -41,24 +43,24 @@ const AddShowCategory = () => {
       return false;
     }
 
-  if(allCategories.length>0){
-    for (const a of allCategories) {
-      if (a.category_name === category) {
-        setCategoryExist(true);
-        setTimeout(() => {
-          setCategoryExist(false);
-        }, 3000);
-        return;
+    if(allCategories.length>0){
+      for (const a of allCategories) {
+        if (a.category_name === category) {
+          setCategoryExist(true);
+          setTimeout(() => {
+            setCategoryExist(false);
+          }, 3000);
+          return;
+        }
       }
     }
-  }
-   
+  
 
     dispatch(addCategory(JSON.stringify(submitCat)));
     setTimeout(() => {
       dispatch({ type: CATEGORY_ADDED_SUCCESS_STATUS, payload: false });
     }, 3000);
-   setCategory("")
+    setCategory("");
   };
 
   return (
@@ -95,7 +97,9 @@ const AddShowCategory = () => {
                       onChange={(e) => setCategory(e.target.value)}
                       autoFocus
                     />
-                    {categoryError && <p style={{color:"red"}}>{Category.ERROR}</p>}
+                    {categoryError && (
+                      <p style={{ color: "red" }}>{Category.ERROR}</p>
+                    )}
                     {categoryExist &&
                       AlertMessage("error", Category.CATEGORY_EXIST)}
                     {categoryAddedSuccess &&
@@ -134,14 +138,13 @@ const AddShowCategory = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {allCategories.length > 0
-                    &&
-                     allCategories.map((category, index) => (
-                        <tr>
-                          <td>{index + 1}</td>
-                          <td>{category?.category_name}</td>
-                        </tr>
-                      ))}
+                  {allCategories.length > 0 &&
+                    allCategories.map((category, index) => (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td>{category?.category_name}</td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
