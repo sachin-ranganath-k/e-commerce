@@ -21,7 +21,7 @@ const AddShowCategory = () => {
 
   useEffect(() => {
     dispatch(fetchCategories());
-  }, []);
+  }, [fetchCategories()]);
 
   const submitCat = {
     category_name: category,
@@ -29,7 +29,7 @@ const AddShowCategory = () => {
 
   const submitData = () => {
     dispatch(addCategory(JSON.stringify(submitCat)));
-    dispatch(fetchCategories());
+    // dispatch(fetchCategories());
   };
 
   return (
