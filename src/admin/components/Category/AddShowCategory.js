@@ -45,7 +45,7 @@ const AddShowCategory = () => {
 
     if(allCategories.length>0){
       for (const a of allCategories) {
-        if (a.category_name === category) {
+        if (a.category_name === category.toUpperCase()) {
           setCategoryExist(true);
           setTimeout(() => {
             setCategoryExist(false);
