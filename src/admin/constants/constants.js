@@ -1,3 +1,8 @@
+export const patterns={
+  ADD_PCB_PATTERN:/^[a-zA-Z][a-zA-Z ]*$/
+}
+
+
 export const adminLogin = {
   INVALID_CREDS: "Invalid Credentials",
 };
@@ -22,5 +27,8 @@ export const Category={
   ADD_CATEGORY_TITLE:"Add Category",
   ENTER_CATEGORY:"Enter Category",
   ADD_CATEGORY:"Add",
-  SHOW_CATEGORY_LIST:"Categories List"
+  SHOW_CATEGORY_LIST:"Categories List",
+  ERROR:"Field shouldn't be blank and should contain only characters",
+  CATEGORY_EXIST:"Category already exists",
+  CATEGORY_ADDED:"Category Added..!"
 }

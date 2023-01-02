@@ -7,17 +7,22 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useDispatch, useSelector } from "react-redux";
-import { Category } from "../../constants/constants";
+import { Category, patterns } from "../../constants/constants";
 import {
   addCategory,
   fetchCategories,
 } from "../../redux/AdminActions/AdminActions";
+import AlertMessage from "../../Alert/Alert";
+import { CATEGORY_ADDED_SUCCESS_STATUS } from "../../redux/AdminActions/AdminActionConstants";
 
 const AddShowCategory = () => {
   const theme = createTheme();
   const dispatch = useDispatch();
   const allCategories = useSelector((state) => state.AllCategoriesList);
+  const categoryAddedSuccess = useSelector((state) => state.newCategoryAddedSuccess);
   const [category, setCategory] = useState("");
+  const [categoryError, setCategoryError] = useState(false);
+  const [categoryExist, setCategoryExist] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -28,8 +33,29 @@ const AddShowCategory = () => {
   };
 
   const submitData = () => {
+    if (category === "" || !patterns.ADD_PCB_PATTERN.test(category)) {
+      setCategoryError(true);
+      setTimeout(() => {
+        setCategoryError(false);
+      }, 3000);
+      return false;
+    }
+
+    for (const a of allCategories) {
+      if (a.category_name === category) {
+        setCategoryExist(true);
+        setTimeout(() => {
+          setCategoryExist(false);
+        }, 3000);
+        return;
+      }
+    }
+
     dispatch(addCategory(JSON.stringify(submitCat)));
-    // dispatch(fetchCategories());
+    setTimeout(() => {
+      dispatch({ type: CATEGORY_ADDED_SUCCESS_STATUS, payload: false });
+    }, 3000);
+   setCategory("")
   };
 
   return (
@@ -39,7 +65,7 @@ const AddShowCategory = () => {
         <div className="row">
           <div className="col-md-4">
             {/* <AddCategory /> */}
-           
+
             <ThemeProvider theme={theme}>
               <Container component="main" maxWidth="xs">
                 <Box
@@ -66,6 +92,11 @@ const AddShowCategory = () => {
                       onChange={(e) => setCategory(e.target.value)}
                       autoFocus
                     />
+                    {categoryError && <p style={{color:"red"}}>{Category.ERROR}</p>}
+                    {categoryExist &&
+                      AlertMessage("error", Category.CATEGORY_EXIST)}
+                    {categoryAddedSuccess &&
+                      AlertMessage("success", Category.CATEGORY_ADDED)}
                     <Button
                       fullWidth
                       variant="contained"
@@ -83,10 +114,14 @@ const AddShowCategory = () => {
           <div className="col-md-8">
             <br /> <br /> <br />
             {/* <ShowCategory /> */}
-            <Typography component="h1" variant="h5" style={{textAlign:"center"}}>
-                    {Category.SHOW_CATEGORY_LIST}
-                  </Typography>
-                  <br />
+            <Typography
+              component="h1"
+              variant="h5"
+              style={{ textAlign: "center" }}
+            >
+              {Category.SHOW_CATEGORY_LIST}
+            </Typography>
+            <br />
             <div className="container">
               <table className="table table-hover table-bordered">
                 <thead>
@@ -96,12 +131,14 @@ const AddShowCategory = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {allCategories.map((category, index) => (
-                    <tr>
-                      <td>{index + 1}</td>
-                      <td>{category?.category_name}</td>
-                    </tr>
-                  ))}
+                  {allCategories.length > 0
+                    &&
+                     allCategories.map((category, index) => (
+                        <tr>
+                          <td>{index + 1}</td>
+                          <td>{category?.category_name}</td>
+                        </tr>
+                      ))}
                 </tbody>
               </table>
             </div>

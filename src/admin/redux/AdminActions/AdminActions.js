@@ -7,6 +7,7 @@ import {
 import {
   ADD_CATEGORY,
   ADMIN_LOGIN_FAILURE,
+  CATEGORY_ADDED_SUCCESS_STATUS,
   FETCH_ADMIN,
   SHOW_CATEGORIES,
 } from "./AdminActionConstants";
@@ -42,8 +43,8 @@ export const addCategory = (payload) => {
     await axios
       .post(`${ADD_CATEGORY_API}`, payload)
       .then((res) => {
-        console.log("new",res)
         dispatch({ type: ADD_CATEGORY, payload });
+        dispatch({ type: CATEGORY_ADDED_SUCCESS_STATUS, payload: true });
       })
       .catch((err) => {
         console.log(err);

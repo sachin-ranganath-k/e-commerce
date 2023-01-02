@@ -8,13 +8,13 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useDispatch, useSelector } from "react-redux";
-import { add_Category } from "../../constants/constants";
+import { Category } from "../../constants/constants";
 import {
   addCategory,
   fetchCategories,
 } from "../../redux/AdminActions/AdminActions";
 
-const AddCategory = () => {
+const AddCategory = (props) => {
   const theme = createTheme();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,7 +24,8 @@ const AddCategory = () => {
     if (sessionStorage.getItem("loginSuccess") === "No") {
       navigate("/");
     }
-  }, []);
+    console.log(props)
+  }, [props.fetch]);
 
   const submitCat = {
     "category_name": category,
@@ -32,6 +33,7 @@ const AddCategory = () => {
 
   const submitData = () => {
     dispatch(addCategory(JSON.stringify(submitCat)));
+    dispatch(props.fetch())
   };
 
   return (
@@ -47,7 +49,7 @@ const AddCategory = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              {addCategory.ADD_CATEGORY_TITLE}
+              {Category.ADD_CATEGORY_TITLE}
             </Typography>
             <Box component="form" noValidate sx={{ mt: 1 }}>
               <TextField
@@ -58,7 +60,7 @@ const AddCategory = () => {
                 label=""
                 name="category"
                 value={category}
-                placeholder={addCategory.ENTER_CATEGORY}
+                placeholder={Category.ENTER_CATEGORY}
                 onChange={(e) => setCategory(e.target.value)}
                 autoFocus
               />
@@ -68,7 +70,7 @@ const AddCategory = () => {
                 onClick={submitData}
                 sx={{ mt: 3, mb: 2 }}
               >
-                {add_Category.ADD_CATEGORY}
+                {Category.ADD_CATEGORY}
               </Button>
             </Box>
           </Box>
