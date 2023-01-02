@@ -1,19 +1,110 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
-import AddCategory from "./AddCategory";
-import ShowCategory from "./ShowCategory";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { useDispatch, useSelector } from "react-redux";
+import { Category } from "../../constants/constants";
+import {
+  addCategory,
+  fetchCategories,
+} from "../../redux/AdminActions/AdminActions";
 
 const AddShowCategory = () => {
+  const theme = createTheme();
+  const dispatch = useDispatch();
+  const allCategories = useSelector((state) => state.AllCategoriesList);
+  const [category, setCategory] = useState("");
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, []);
+
+  const submitCat = {
+    category_name: category,
+  };
+
+  const submitData = () => {
+    dispatch(addCategory(JSON.stringify(submitCat)));
+    dispatch(fetchCategories());
+  };
+
   return (
     <>
       <AdminNavbar />
       <div className="col-md-12">
         <div className="row">
           <div className="col-md-4">
-            <AddCategory />
+            {/* <AddCategory /> */}
+           
+            <ThemeProvider theme={theme}>
+              <Container component="main" maxWidth="xs">
+                <Box
+                  sx={{
+                    marginTop: 8,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography component="h1" variant="h5">
+                    {Category.ADD_CATEGORY_TITLE}
+                  </Typography>
+                  <Box component="form" noValidate sx={{ mt: 1 }}>
+                    <TextField
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="category"
+                      label=""
+                      name="category"
+                      value={category}
+                      placeholder={Category.ENTER_CATEGORY}
+                      onChange={(e) => setCategory(e.target.value)}
+                      autoFocus
+                    />
+                    <Button
+                      fullWidth
+                      variant="contained"
+                      onClick={submitData}
+                      sx={{ mt: 3, mb: 2 }}
+                    >
+                      {Category.ADD_CATEGORY}
+                    </Button>
+                  </Box>
+                </Box>
+              </Container>
+            </ThemeProvider>
           </div>
+
           <div className="col-md-8">
-            <ShowCategory />
+            <br /> <br /> <br />
+            {/* <ShowCategory /> */}
+            <Typography component="h1" variant="h5" style={{textAlign:"center"}}>
+                    {Category.SHOW_CATEGORY_LIST}
+                  </Typography>
+                  <br />
+            <div className="container">
+              <table className="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <th>Sl No.</th>
+                    <th>Category</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {allCategories.map((category, index) => (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>{category?.category_name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

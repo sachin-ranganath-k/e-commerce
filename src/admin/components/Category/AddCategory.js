@@ -7,11 +7,17 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { addCategory } from "../../constants/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { add_Category } from "../../constants/constants";
+import {
+  addCategory,
+  fetchCategories,
+} from "../../redux/AdminActions/AdminActions";
 
 const AddCategory = () => {
   const theme = createTheme();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [category, setCategory] = useState("");
 
   useEffect(() => {
@@ -19,6 +25,14 @@ const AddCategory = () => {
       navigate("/");
     }
   }, []);
+
+  const submitCat = {
+    "category_name": category,
+  };
+
+  const submitData = () => {
+    dispatch(addCategory(JSON.stringify(submitCat)));
+  };
 
   return (
     <div>
@@ -51,10 +65,10 @@ const AddCategory = () => {
               <Button
                 fullWidth
                 variant="contained"
-                // onClick={submitData}
+                onClick={submitData}
                 sx={{ mt: 3, mb: 2 }}
               >
-                {addCategory.ADD_CATEGORY}
+                {add_Category.ADD_CATEGORY}
               </Button>
             </Box>
           </Box>

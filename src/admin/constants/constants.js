@@ -18,8 +18,9 @@ export const DashboardTable = {
   SHOP_ADDRESS:"Shop Address"
 };
 
-export const addCategory={
+export const Category={
   ADD_CATEGORY_TITLE:"Add Category",
   ENTER_CATEGORY:"Enter Category",
-  ADD_CATEGORY:"Add"
+  ADD_CATEGORY:"Add",
+  SHOW_CATEGORY_LIST:"Categories List"
 }

@@ -2,12 +2,14 @@ import {
   FETCH_ADMIN,
   ADMIN_LOGIN_FAILURE,
   SHOW_CATEGORIES,
+  ADD_CATEGORY,
 } from "../AdminActions/AdminActionConstants";
 
 const initialState = {
   adminList: [],
   adminLoginApiStatus: "",
-  AllCategoriesList:[]
+  AllCategoriesList:[],
+  newCategoryList:[]
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -28,6 +30,12 @@ const AdminReducer = (state = initialState, action) => {
       return {
         ...state,
         AllCategoriesList: action.payload,
+      };
+
+      case ADD_CATEGORY:
+      return {
+        ...state,
+        newCategoryList: action.payload,
       };
 
 

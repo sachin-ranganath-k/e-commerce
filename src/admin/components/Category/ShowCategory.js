@@ -24,21 +24,12 @@ const ShowCategory = () => {
             </tr>
           </thead>
           <tbody>
-             {allCategories.map((category) => {
-              let sl = 1;
+            {allCategories.map((category, index) => (
               <tr>
-                <td>{sl++}</td>
+                <td>{index + 1}</td>
                 <td>{category?.category_name}</td>
               </tr>
-             })}
-            <tr>
-              <td>1</td>
-              <td>Biscuit</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Chocolate</td>
-            </tr>
+            ))}
           </tbody>
         </table>
       </div>
