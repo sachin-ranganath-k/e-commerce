@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { DashboardTable } from "../../../constants/constants";
+import { todayOrders } from "../../../redux/AdminActions/AdminActions";
 
 const TodayOrdersTable = () => {
+  const dispatch = useDispatch();
+  const todayOrdersList = useSelector((state) => state.todayOrdersList);
+
+  useEffect(() => {
+    dispatch(todayOrders());
+  }, []);
+
   return (
     <div>
       <table class="table table-hover table-bordered">
@@ -14,36 +23,23 @@ const TodayOrdersTable = () => {
             <th>{DashboardTable.QUANTITY}</th>
             <th>{DashboardTable.ORDERED_BY}</th>
             <th>{DashboardTable.SHOP_ADDRESS}</th>
+            <th>{DashboardTable.CONTACT_NO}</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Chocolate</td>
-            <td>Dairy Milk</td>
-            <td>Dairy Milk Chocolates</td>
-            <td>10</td>
-            <td>Abhishek</td>
-            <td>Near Gandhi Chowk, Savadatti 591126</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Biscuit</td>
-            <td>Patanjali</td>
-            <td>Patanjali Biscuits</td>
-            <td>20</td>
-            <td>Sachin</td>
-            <td>Near APMC Savadatti 59126</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Soap</td>
-            <td>Patanjali</td>
-            <td>Haldi Chandan Soap</td>
-            <td>50</td>
-            <td>Sachin</td>
-            <td>Near New Bustand, Savadatti 591126</td>
-          </tr>
+          {todayOrdersList.map((order, index) => (
+              <tr>
+                <td>{index+1}</td>
+                <td>{order?.category}</td>
+                <td>{order?.brand}</td>
+                <td>{order?.product}</td>
+                <td>{order?.quantity}</td>
+                <td>{order?.ordered_by}</td>
+                <td>Near Gandhi Chowk, Savadatti 591126</td>
+                <td>{order?.contact_num}</td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>

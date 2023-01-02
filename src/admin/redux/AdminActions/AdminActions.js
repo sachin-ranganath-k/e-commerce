@@ -3,6 +3,7 @@ import {
   ADD_CATEGORY_API,
   FETCH_ADMIN_API,
   SHOW_CATEGORY_API,
+  TODAY_ORDERS_API,
 } from "../../AdminEndPoints/AdminEndPoints";
 import {
   ADD_CATEGORY,
@@ -10,6 +11,7 @@ import {
   CATEGORY_ADDED_SUCCESS_STATUS,
   FETCH_ADMIN,
   SHOW_CATEGORIES,
+  TODAY_ORDERS_LIST,
 } from "./AdminActionConstants";
 
 export const fetchAdmins = () => {
@@ -48,6 +50,19 @@ export const addCategory = (payload) => {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+};
+
+export const todayOrders = () => {
+  return async function (dispatch) {
+    await axios
+      .get(`${TODAY_ORDERS_API}`)
+      .then((res) => {
+        dispatch({ type: TODAY_ORDERS_LIST, payload: res.data });
+      })
+      .catch((err) => {
+        console.log("Err")
       });
   };
 };

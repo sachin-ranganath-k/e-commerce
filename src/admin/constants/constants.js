@@ -20,7 +20,8 @@ export const DashboardTable = {
   BRAND_NAME: "Brand Name",
   QUANTITY: "Quantity",
   ORDERED_BY: "Ordered By",
-  SHOP_ADDRESS:"Shop Address"
+  SHOP_ADDRESS:"Shop Address",
+  CONTACT_NO:"Contact No."
 };
 
 export const Category={

@@ -4,6 +4,7 @@ import {
   SHOW_CATEGORIES,
   ADD_CATEGORY,
   CATEGORY_ADDED_SUCCESS_STATUS,
+  TODAY_ORDERS_LIST,
 } from "../AdminActions/AdminActionConstants";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   AllCategoriesList: [],
   newCategoryList: [],
   newCategoryAddedSuccess: false,
+  todayOrdersList:[]
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -45,6 +47,12 @@ const AdminReducer = (state = initialState, action) => {
         ...state,
         newCategoryAddedSuccess: action.payload,
       };
+
+    case TODAY_ORDERS_LIST:
+      return{
+        ...state,
+        todayOrdersList:action.payload
+      }
 
     default:
       return state;
