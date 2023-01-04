@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminLogin from "../admin/components/AdminLogin";
-import AddShowCategory from "../admin/components/Category/AddShowCategory";
+import AddShowCat from "../admin/components/Category/AddShowCat";
 import Dashboard from "../admin/components/Dashboard/Dashboard";
 
 const RouteLinks = () => {
@@ -11,7 +11,7 @@ const RouteLinks = () => {
         <Routes>
           <Route path="/" element={<AdminLogin />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/addCategory" element={<AddShowCategory />} />
+          <Route path="/addCategory" element={<AddShowCat />} />
         </Routes>
       </Router>
     </div>

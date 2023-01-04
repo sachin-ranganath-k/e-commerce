@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../redux/AdminActions/AdminActions";
-import AddCategory from "./AddCategory";
 
-const ShowCategory = () => {
+
+const ShowCategory = (props) => {
   const dispatch = useDispatch();
   const allCategories = useSelector((state) => state.AllCategoriesList);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [props.data]);
 
   const loadData = () => {
     dispatch(fetchCategories());
@@ -38,7 +38,6 @@ const ShowCategory = () => {
           </tbody>
         </table>
       </div>
-      <AddCategory fetch={loadData} />
     </div>
   );
 };
