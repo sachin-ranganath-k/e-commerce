@@ -6,6 +6,13 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import "jquery/dist/jquery.min.js";
+
+//Datatable Modules
+import "datatables.net-dt/js/dataTables.dataTables";
+import "datatables.net-dt/css/jquery.dataTables.min.css";
+import $ from "jquery";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Category, patterns } from "../../constants/constants";
 import {
@@ -16,6 +23,12 @@ import AlertMessage from "../../Alert/Alert";
 import { CATEGORY_ADDED_SUCCESS_STATUS } from "../../redux/AdminActions/AdminActionConstants";
 
 const AddShowCategory = () => {
+  useEffect(() => {
+    $(document).ready(function () {
+      $("#example").DataTable();
+    });
+  }, []);
+
   const theme = createTheme();
   const dispatch = useDispatch();
   const allCategories = useSelector((state) => state.AllCategoriesList);
@@ -43,7 +56,7 @@ const AddShowCategory = () => {
       return false;
     }
 
-    if(allCategories.length>0){
+    if (allCategories.length > 0) {
       for (const a of allCategories) {
         if (a.category_name === category.toUpperCase().trim()) {
           setCategoryExist(true);
@@ -54,7 +67,6 @@ const AddShowCategory = () => {
         }
       }
     }
-  
 
     dispatch(addCategory(JSON.stringify(submitCat)));
     setTimeout(() => {
@@ -130,7 +142,7 @@ const AddShowCategory = () => {
             </Typography>
             <br />
             <div className="container">
-              <table className="table table-hover table-bordered">
+              <table className="display" id="example">
                 <thead>
                   <tr>
                     <th>Sl No.</th>
