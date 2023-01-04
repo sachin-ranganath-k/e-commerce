@@ -22,7 +22,6 @@ const TodayOrdersTable = () => {
             <th>{DashboardTable.PRODUCT_NAME}</th>
             <th>{DashboardTable.QUANTITY}</th>
             <th>{DashboardTable.ORDERED_BY}</th>
-            <th>{DashboardTable.SHOP_ADDRESS}</th>
             <th>{DashboardTable.CONTACT_NO}</th>
           </tr>
         </thead>
@@ -35,7 +34,6 @@ const TodayOrdersTable = () => {
                 <td>{order?.product}</td>
                 <td>{order?.quantity}</td>
                 <td>{order?.ordered_by}</td>
-                <td>Near Gandhi Chowk, Savadatti 591126</td>
                 <td>{order?.contact_num}</td>
               </tr>
             ))

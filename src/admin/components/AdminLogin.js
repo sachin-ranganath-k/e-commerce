@@ -75,11 +75,6 @@ const AdminLogin = () => {
             <Typography component="h1" variant="h5">
               Admin Login
             </Typography>
-            {
-              admins.map((a)=>{
-                console.log(a.email)
-              })
-            }
             <Box component="form" noValidate sx={{ mt: 1 }}>
               {loginApiFailure === "Failed" &&
                 AlertMessage("error", SOMETHING_WENT_WRONG)}

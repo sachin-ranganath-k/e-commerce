@@ -1,8 +1,10 @@
- export const FETCH_ADMIN_API="https://anbulbule.000webhostapp.com/get_admin_login/"
-export const TODAY_ORDERS_API="https://anbulbule.000webhostapp.com/get_total_order_list/"
+ export const FETCH_ADMIN_API="http://gangadharpoly.org/ecom/admin/admin_login/get_admin_login.php"
+
+
+export const TODAY_ORDERS_API="http://gangadharpoly.org/ecom/admin/order_list/get_today_order_list.php"
  
- export const SHOW_CATEGORY_API="https://anbulbule.000webhostapp.com/get_category/"
- export const ADD_CATEGORY_API="https://anbulbule.000webhostapp.com/insert_category_api/"
+ export const SHOW_CATEGORY_API="http://gangadharpoly.org/ecom/admin/category/get_category.php"
+ export const ADD_CATEGORY_API="http://gangadharpoly.org/ecom/admin/category/insert_category_api.php"
 
 
 
