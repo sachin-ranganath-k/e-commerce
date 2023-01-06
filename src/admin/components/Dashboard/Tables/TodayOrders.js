@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DashboardTable } from "../../../constants/constants";
+import { Dashboard, DashboardTable } from "../../../constants/constants";
 import { todayOrders } from "../../../redux/AdminActions/AdminActions";
 
 const TodayOrdersTable = () => {
@@ -13,7 +13,7 @@ const TodayOrdersTable = () => {
 
   return (
     <div>
-      <table class="table table-hover table-bordered">
+      <table className="table table-hover table-bordered">
         <thead>
           <tr>
             <th>{DashboardTable.SL_NO}</th>
@@ -26,18 +26,19 @@ const TodayOrdersTable = () => {
           </tr>
         </thead>
         <tbody>
-          {todayOrdersList.map((order, index) => (
-              <tr>
-                <td>{index+1}</td>
-                <td>{order?.category}</td>
-                <td>{order?.brand}</td>
-                <td>{order?.product}</td>
-                <td>{order?.quantity}</td>
-                <td>{order?.ordered_by}</td>
-                <td>{order?.contact_num}</td>
-              </tr>
-            ))
-          }
+          {todayOrdersList.length > 0
+            ? todayOrdersList.map((order, index) => (
+                <tr>
+                  <td>{index + 1}</td>
+                  <td>{order?.category}</td>
+                  <td>{order?.brand}</td>
+                  <td>{order?.product}</td>
+                  <td>{order?.quantity}</td>
+                  <td>{order?.ordered_by}</td>
+                  <td>{order?.contact_num}</td>
+                </tr>
+              ))
+            : Dashboard.NO_ORDERS_TODAY}
         </tbody>
       </table>
     </div>

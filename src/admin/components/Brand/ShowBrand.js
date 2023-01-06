@@ -3,31 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { GlobalConstants } from "../../constants/constants";
 import {
   cleanUpData,
-  fetchCategories,
+  fetchBrands,
 } from "../../redux/AdminActions/AdminActions";
 
-const ShowCategory = (props) => {
+const ShowBrand = (props) => {
   const dispatch = useDispatch();
-  const allCategories = useSelector((state) => state.AllCategoriesList);
+  const allBrands = useSelector((state) => state.brands.allBrandsList);
 
   useEffect(() => {
     loadData();
-
     return () => {
       dispatch(cleanUpData());
     };
   }, [props.data]);
 
   const loadData = () => {
-    dispatch(fetchCategories());
+    dispatch(fetchBrands());
   };
 
   return (
     <div>
       <br /> <br /> <br />
       <br />
-      {/* <div style={{ fontSize: "22px" }}>Categories List</div> */}
-      <div className="container">
+     {/* <div style={{ fontSize: "22px" }}>Brands List</div>  */}
+       <div className="container">
         <table className="table table-hover table-bordered">
           <thead>
             <tr>
@@ -36,19 +35,19 @@ const ShowCategory = (props) => {
             </tr>
           </thead>
           <tbody>
-            {allCategories.length > 0
-              ? allCategories.map((category, index) => (
-                  <tr key={category?.category_id}>
+            {allBrands.length > 0
+              ? allBrands.map((brand, index) => (
+                  <tr key={brand.brand_id}>
                     <td>{index + 1}</td>
-                    <td>{category?.category_name}</td>
+                    <td>{brand?.brand_name}</td>
                   </tr>
                 ))
               : GlobalConstants.NO_DATA_FOUND}
           </tbody>
         </table>
-      </div>
+      </div> 
     </div>
   );
 };
 
-export default ShowCategory;
+export default ShowBrand;

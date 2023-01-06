@@ -120,7 +120,6 @@ const AddShowCategory = () => {
 
           <div className="col-md-8">
             <br /> <br /> <br />
-            {/* <ShowCategory /> */}
             <Typography
               component="h1"
               variant="h5"

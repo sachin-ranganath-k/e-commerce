@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
@@ -7,52 +7,57 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useDispatch, useSelector } from "react-redux";
-import { Category, patterns } from "../../constants/constants";
-import { addCategory } from "../../redux/AdminActions/AdminActions";
+import { Brand, Category, patterns } from "../../constants/constants";
+import { addBrand, fetchBrands } from "../../redux/AdminActions/AdminActions";
 import AlertMessage from "../../Alert/Alert";
-import { CATEGORY_ADDED_SUCCESS_STATUS } from "../../redux/AdminActions/AdminActionConstants";
-import ShowCategory from "./ShowCategory";
+import ShowBrand from "./ShowBrand";
+import { BRAND_ADDED_SUCCESS_STATUS } from "../../redux/AdminActions/AdminActionConstants";
 
-const AddCategory = () => {
+const AddBrand = () => {
   const theme = createTheme();
   const dispatch = useDispatch();
-  const allCategories = useSelector((state) => state.AllCategoriesList);
-  const categoryAddedSuccess = useSelector((state) => state.newCategoryAddedSuccess);
-  const [category, setCategory] = useState("");
-  const [categoryError, setCategoryError] = useState(false);
-  const [categoryExist, setCategoryExist] = useState(false);
+  const allBrands = useSelector((state) => state.brands.allBrandsList);
+  const brandAddedSuccess = useSelector((state) => state.brands.newBrandAddedSuccess);
 
-  const submitCat = {
-    category_name: category,
+  const [brand, setBrand] = useState("");
+  const [brandError, setBrandError] = useState(false);
+  const [brandExist, setBrandExist] = useState(false);
+
+  const submitBrand = {
+    brand_name: brand,
   };
 
+  useEffect(() => {
+    dispatch(fetchBrands());
+  }, []);
+
   const submitData = () => {
-    if (category === "" || !patterns.ADD_PCB_PATTERN.test(category)) {
-      setCategoryError(true);
+    if (brand === "" || !patterns.ADD_PCB_PATTERN.test(brand)) {
+      setBrandError(true);
       setTimeout(() => {
-        setCategoryError(false);
+        setBrandError(false);
       }, 3000);
       return false;
     }
 
-    if (allCategories.length > 0) {
-      for (const a of allCategories) {
-        if (a.category_name === category.toUpperCase().trim()) {
-          setCategoryExist(true);
+    if (allBrands.length > 0) {
+      for (const a of allBrands) {
+        if (a.brand_name === brand.toUpperCase().trim()) {
+          setBrandExist(true);
           setTimeout(() => {
-            setCategoryExist(false);
+            setBrandExist(false);
           }, 3000);
           return;
         }
       }
     }
 
-    dispatch(addCategory(JSON.stringify(submitCat)));
+    dispatch(addBrand(JSON.stringify(submitBrand)));
 
     setTimeout(() => {
-      dispatch({ type: CATEGORY_ADDED_SUCCESS_STATUS, payload: false });
+      dispatch({ type: BRAND_ADDED_SUCCESS_STATUS, payload: false });
     }, 3000);
-    setCategory("");
+    setBrand("");
   };
 
   return (
@@ -72,7 +77,7 @@ const AddCategory = () => {
                   }}
                 >
                   <Typography component="h1" variant="h5">
-                    {Category.ADD_CATEGORY_TITLE}
+                    {Brand.ADD_BRAND_TITLE}
                   </Typography>
                   <Box component="form" noValidate sx={{ mt: 1 }}>
                     <TextField
@@ -82,18 +87,17 @@ const AddCategory = () => {
                       id="category"
                       label=""
                       name="category"
-                      value={category}
-                      placeholder={Category.ENTER_CATEGORY}
-                      onChange={(e) => setCategory(e.target.value)}
+                      value={brand}
+                      placeholder={Brand.ENTER_BRAND}
+                      onChange={(e) => setBrand(e.target.value)}
                       autoFocus
                     />
-                    {categoryError && (
-                      <p style={{ color: "red" }}>{Category.ERROR}</p>
+                    {brandError && (
+                      <p style={{ color: "red" }}>{Brand.ERROR}</p>
                     )}
-                    {categoryExist &&
-                      AlertMessage("error", Category.CATEGORY_EXIST)}
-                    {categoryAddedSuccess &&
-                      AlertMessage("success", Category.CATEGORY_ADDED)}
+                    {brandExist && AlertMessage("error", Brand.BRAND_EXIST)}
+                    {brandAddedSuccess &&
+                      AlertMessage("success", Brand.BRAND_ADDED)}
                     <Button
                       fullWidth
                       variant="contained"
@@ -109,7 +113,7 @@ const AddCategory = () => {
           </div>
 
           <div className="col-md-8">
-            <ShowCategory data={allCategories}/>
+            <ShowBrand data={allBrands} />
           </div>
         </div>
       </div>
@@ -117,4 +121,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default AddBrand;

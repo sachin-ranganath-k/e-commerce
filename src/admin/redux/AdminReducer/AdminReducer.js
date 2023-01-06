@@ -5,6 +5,10 @@ import {
   ADD_CATEGORY,
   CATEGORY_ADDED_SUCCESS_STATUS,
   TODAY_ORDERS_LIST,
+  SHOW_BRANDS,
+  ADD_BRANDS,
+  BRAND_ADDED_SUCCESS_STATUS,
+  CLEAN_UP_DATA,
 } from "../AdminActions/AdminActionConstants";
 
 const initialState = {
@@ -13,7 +17,12 @@ const initialState = {
   AllCategoriesList: [],
   newCategoryList: [],
   newCategoryAddedSuccess: false,
-  todayOrdersList:[]
+  brands: {
+    newBrandsList: {},
+    allBrandsList: [],
+    newBrandAddedSuccess: false,
+  },
+  todayOrdersList: [],
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -48,11 +57,41 @@ const AdminReducer = (state = initialState, action) => {
         newCategoryAddedSuccess: action.payload,
       };
 
-    case TODAY_ORDERS_LIST:
-      return{
+    case SHOW_BRANDS:
+      return {
         ...state,
-        todayOrdersList:action.payload
-      }
+        brands: {
+          ...state.brands,
+          allBrandsList: action.payload,
+        },
+      };
+
+    case ADD_BRANDS:
+      return {
+        ...state,
+        brands: {
+          ...state.brands,
+          newBrandsList: action.payload,
+        },
+      };
+
+    case BRAND_ADDED_SUCCESS_STATUS:
+      return {
+        ...state,
+        brands: {
+          ...state.brands,
+          newBrandAddedSuccess: action.payload,
+        },
+      };
+
+    case TODAY_ORDERS_LIST:
+      return {
+        ...state,
+        todayOrdersList: action.payload,
+      };
+
+    case CLEAN_UP_DATA:
+      return{}
 
     default:
       return state;

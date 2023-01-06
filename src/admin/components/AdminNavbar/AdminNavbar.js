@@ -35,7 +35,7 @@ const AdminNavbar = () => {
               Orders
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <Link to="/brands" style={{ textDecoration: "none", color: "white" }}>
               Add Brand
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
