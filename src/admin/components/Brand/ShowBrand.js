@@ -12,9 +12,6 @@ const ShowBrand = (props) => {
 
   useEffect(() => {
     loadData();
-    return () => {
-      dispatch(cleanUpData());
-    };
   }, [props.data]);
 
   const loadData = () => {
