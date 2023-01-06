@@ -46,9 +46,9 @@ const AdminNavbar = () => {
               Add Category
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <a href="https://abhibulbule.000webhostapp.com/Product_latest/admin/product/product.php" style={{ textDecoration: "none", color: "white" }}>
               Add Product
-            </Link>
+            </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Link to="/" style={{ textDecoration: "none", color: "white" }}>
               Update Details
