@@ -32,7 +32,7 @@ export const Category = {
   ADD_CATEGORY_TITLE: "Add Category",
   ENTER_CATEGORY: "Enter Category",
   ADD_CATEGORY: "Add",
-  SHOW_CATEGORY_LIST: "Categories List",
+  SHOW_CATEGORY_LIST: "Total Categories Added :",
   ERROR: "Field shouldn't be blank and should contain only characters",
   CATEGORY_EXIST: "Category already exists",
   CATEGORY_ADDED: "Category Added..!",
@@ -45,6 +45,7 @@ export const Brand={
   ERROR: "Field shouldn't be blank and should contain only characters",
   BRAND_EXIST: "Brand already exists",
   BRAND_ADDED: "Brand Added..!",
+  TOTAL_BRANDS_LIST:"Total Brands Added :"
 }
 
 export const Product={
