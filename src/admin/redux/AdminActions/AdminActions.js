@@ -53,7 +53,7 @@ export const fetchBrands = () => {
     await axios
       .get(`${SHOW_BRAND_API}`)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         dispatch({ type: SHOW_BRANDS, payload: res.data });
       })
       .catch((err) => {

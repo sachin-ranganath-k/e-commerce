@@ -41,7 +41,7 @@ const UploadBooks = () => {
       .post("http://localhost:3002/books", inputs)
       // .post("http://localhost/api/user/save", inputs)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSuccessMessage(true);
         setErrorMessage(false);
       })

@@ -13,7 +13,7 @@ function FileUpload() {
         //if await is removed, console log will be called before the uploadFile() is executed completely.
         //since the await is added, this will pause here then console log will be called
         let res = await uploadFile(file);
-        console.log(res.data);
+        // console.log(res.data);
     }
     
     const uploadFile = async(file) => { 
@@ -28,7 +28,7 @@ function FileUpload() {
     }
 
     const handleOnChange = (e) => {
-        console.log(e.target.files[0]);
+        // console.log(e.target.files[0]);
         setFile(e.target.files[0]);
     }
   

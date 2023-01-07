@@ -32,7 +32,7 @@ const AddProduct = () => {
   }, []);
 
   const handleOnChangeFile = (e) => {
-    console.log(e.target.files[0]);
+    //console.log(e.target.files[0]);
     setFile(e.target.files[0]);
   };
 
@@ -55,7 +55,7 @@ const AddProduct = () => {
 
   const handleSubmit = async () => {
     let res = await uploadFile(file);
-    console.log(res.data);
+    // console.log(res.data);
   };
 
   const uploadFile = async (file) => {
