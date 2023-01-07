@@ -39,9 +39,9 @@ const AdminNavbar = () => {
               Add Category
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <Link to="/addProduct" style={{ textDecoration: "none", color: "white" }}>
               Add Product
-            </a>
+            </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Link to="/" style={{ textDecoration: "none", color: "white" }}>
               Update Details
