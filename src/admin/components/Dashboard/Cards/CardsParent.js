@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  todayOrders,
+  totalOrders,
+} from "../../../redux/AdminActions/AdminActions";
 import Cards from "./Cards";
 import Clock from "./Clock";
 
-const CardsParent = (propsFromClock) => {
+const CardsParent = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(todayOrders());
+    dispatch(totalOrders());
+  }, []);
+
+  const todayOrdersList = useSelector((state) => state.todayOrdersList);
+  const todayOrdersCount = todayOrdersList.length;
+
+  const totalOrdersList = useSelector((state) => state.totalOrdersList);
+  const totalOrdersCount = totalOrdersList.length;
+
   const weekday = [
     "Sunday",
     "Monday",
@@ -28,12 +45,12 @@ const CardsParent = (propsFromClock) => {
     <div>
       <div className="row">
         <div className="col-xl-3 col-md-6">
-          <Cards title="Today's Orders" value="100" />
+          <Cards title="Today's Orders" value={todayOrdersCount} />
           <br />
         </div>
 
         <div className="col-xl-3 col-md-6">
-          <Cards title="Total Orders" value="200" />
+          <Cards title="Total Orders" value={totalOrdersCount} />
         </div>
 
         <div className="col-xl-3 col-md-6">

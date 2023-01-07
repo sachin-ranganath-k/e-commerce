@@ -9,6 +9,7 @@ import {
   ADD_BRANDS,
   BRAND_ADDED_SUCCESS_STATUS,
   CLEAN_UP_DATA,
+  TOTAL_ORDERS_LIST,
 } from "../AdminActions/AdminActionConstants";
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
     newBrandAddedSuccess: false,
   },
   todayOrdersList: [],
+  totalOrdersList:[]
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -89,6 +91,13 @@ const AdminReducer = (state = initialState, action) => {
         ...state,
         todayOrdersList: action.payload,
       };
+
+      case TOTAL_ORDERS_LIST:
+        return {
+          ...state,
+          totalOrdersList: action.payload,
+        };
+  
 
     case CLEAN_UP_DATA:
       return{}

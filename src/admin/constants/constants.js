@@ -46,3 +46,12 @@ export const Brand={
   BRAND_EXIST: "Brand already exists",
   BRAND_ADDED: "Brand Added..!",
 }
+
+export const Product={
+  ADD_PRODUCT_TITLE:"Add Product",
+  ENTER_PRODUCT:"Enter Product Name",
+  ADD_PRODUCT:"Add",
+  ERROR: "Field shouldn't be blank and should contain only characters",
+  PRODUCT_EXIST: "Product already exists",
+  PRODUCT_ADDED: "Product Added..!",
+}

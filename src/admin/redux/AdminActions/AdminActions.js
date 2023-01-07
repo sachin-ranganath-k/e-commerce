@@ -6,6 +6,7 @@ import {
   SHOW_BRAND_API,
   SHOW_CATEGORY_API,
   TODAY_ORDERS_API,
+  TOTAL_ORDERS_API,
 } from "../../AdminEndPoints/AdminEndPoints";
 import {
   ADD_BRANDS,
@@ -18,6 +19,7 @@ import {
   SHOW_BRANDS,
   SHOW_CATEGORIES,
   TODAY_ORDERS_LIST,
+  TOTAL_ORDERS_LIST,
 } from "./AdminActionConstants";
 
 export const fetchAdmins = () => {
@@ -100,6 +102,20 @@ export const todayOrders = () => {
       });
   };
 };
+
+export const totalOrders = () => {
+  return async function (dispatch) {
+    await axios
+      .get(`${TOTAL_ORDERS_API}`)
+      .then((res) => {
+        dispatch({ type: TOTAL_ORDERS_LIST, payload: res.data });
+      })
+      .catch((err) => {
+        console.log("Err")
+      });
+  };
+};
+
 
 
 export const cleanUpData=()=>{

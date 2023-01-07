@@ -9,13 +9,6 @@ const AdminNavbar = () => {
           Dashboard
         </Link>
 
-        <button
-          className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-          id="sidebarToggle"
-        >
-          <i className="fas fa-bars"></i>
-        </button>
-
         <div
           className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
           style={{ color: "white" }}
@@ -46,7 +39,7 @@ const AdminNavbar = () => {
               Add Category
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <Link to="/addProduct" style={{ textDecoration: "none", color: "white" }}>
               Add Product
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -86,9 +79,9 @@ const AdminNavbar = () => {
                 <hr className="dropdown-divider" />
               </li>
               <li>
-                <a className="dropdown-item" href="#!">
+                <Link to="/adminLogout" className="dropdown-item">
                   Logout
-                </a>
+                </Link>
               </li>
             </ul>
           </li>
