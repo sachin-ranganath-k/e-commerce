@@ -7,6 +7,7 @@ import ShowBrand from "../admin/components/Brand/ShowBrand";
 import AddShowCat from "../admin/components/Category/AddShowCat";
 import Dashboard from "../admin/components/Dashboard/Dashboard";
 import FileUpload from "../admin/components/FileUpload";
+import ShowOrders from "../admin/components/Orders/ShowOrders";
 import AddProduct from "../admin/components/Product/AddProduct";
 
 const RouteLinks = () => {
@@ -21,6 +22,8 @@ const RouteLinks = () => {
           <Route path="/brands" element={<AddBrand />} />
           <Route path="/addProduct" element={<AddProduct />} />
           <Route path="/adminLogout" element={<AdminLogout />} />
+          <Route path="/orders" element={<ShowOrders />} />
+
         </Routes>
       </Router>
     </div>
