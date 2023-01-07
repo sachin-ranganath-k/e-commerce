@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
@@ -10,14 +10,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Brand, Category, patterns } from "../../constants/constants";
 import { addBrand, fetchBrands } from "../../redux/AdminActions/AdminActions";
 import AlertMessage from "../../Alert/Alert";
-import ShowBrand from "./ShowBrand";
 import { BRAND_ADDED_SUCCESS_STATUS } from "../../redux/AdminActions/AdminActionConstants";
+
+const ShowBrand = lazy(() => import("../Brand/ShowBrand"));
 
 const AddBrand = () => {
   const theme = createTheme();
   const dispatch = useDispatch();
   const allBrands = useSelector((state) => state.brands.allBrandsList);
-  const brandAddedSuccess = useSelector((state) => state.brands.newBrandAddedSuccess);
+  const brandAddedSuccess = useSelector(
+    (state) => state.brands.newBrandAddedSuccess
+  );
 
   const [brand, setBrand] = useState("");
   const [brandError, setBrandError] = useState(false);
@@ -113,7 +116,9 @@ const AddBrand = () => {
           </div>
 
           <div className="col-md-8">
-            <ShowBrand data={allBrands} />
+            <Suspense fallback="Loading Data..!">
+              <ShowBrand data={allBrands} />
+            </Suspense>
           </div>
         </div>
       </div>
