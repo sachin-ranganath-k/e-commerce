@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Brand, GlobalConstants } from "../../constants/constants";
 import {
@@ -8,7 +8,11 @@ import {
 
 const ShowBrand = (props) => {
   const dispatch = useDispatch();
-  const allBrands = useSelector((state) => state.AdminReducer.brands.allBrandsList);
+  const allBrands = useSelector(
+    (state) => state.AdminReducer.brands.allBrandsList
+  );
+
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     loadData();
@@ -28,6 +32,12 @@ const ShowBrand = (props) => {
           <div className="card-header">
             <i className="fas fa-table me-1"></i>
             {Brand.TOTAL_BRANDS_LIST} {allBrands.length}
+            <input
+              type="text"
+              style={{ float: "right" }}
+              placeholder="Search Brand"
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
           <div className="card-body">
             <table className="table table-hover table-bordered">
@@ -39,12 +49,24 @@ const ShowBrand = (props) => {
               </thead>
               <tbody>
                 {allBrands.length > 0
-                  ? allBrands.map((brand, index) => (
-                      <tr key={brand.brand_id}>
-                        <td>{index + 1}</td>
-                        <td>{brand?.brand_name}</td>
-                      </tr>
-                    ))
+                  ? allBrands
+                      .filter((value) => {
+                        if (searchQuery === "") {
+                          return value;
+                        } else if (
+                          value.brand_name
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase())
+                        ) {
+                          return value;
+                        }
+                      })
+                      .map((brand, index) => (
+                        <tr key={brand.brand_id}>
+                          <td>{index + 1}</td>
+                          <td>{brand?.brand_name}</td>
+                        </tr>
+                      ))
                   : GlobalConstants.NO_DATA_FOUND}
               </tbody>
             </table>
