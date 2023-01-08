@@ -17,9 +17,9 @@ const ShowBrand = lazy(() => import("../Brand/ShowBrand"));
 const AddBrand = () => {
   const theme = createTheme();
   const dispatch = useDispatch();
-  const allBrands = useSelector((state) => state.brands.allBrandsList);
+  const allBrands = useSelector((state) => state.AdminReducer.brands.allBrandsList);
   const brandAddedSuccess = useSelector(
-    (state) => state.brands.newBrandAddedSuccess
+    (state) => state.AdminReducer.brands.newBrandAddedSuccess
   );
 
   const [brand, setBrand] = useState("");

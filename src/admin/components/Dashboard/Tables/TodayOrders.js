@@ -5,7 +5,7 @@ import { todayOrders } from "../../../redux/AdminActions/AdminActions";
 
 const TodayOrdersTable = () => {
   const dispatch = useDispatch();
-  const todayOrdersList = useSelector((state) => state.todayOrdersList);
+  const todayOrdersList = useSelector((state) => state.AdminReducer.todayOrdersList);
 
   useEffect(() => {
     dispatch(todayOrders());

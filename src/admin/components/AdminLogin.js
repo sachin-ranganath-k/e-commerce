@@ -18,8 +18,8 @@ const theme = createTheme();
 
 const AdminLogin = () => {
   const dispatch = useDispatch();
-  const admins = useSelector((state) => state.adminList);
-  const loginApiFailure = useSelector((state) => state.adminLoginApiStatus);
+  const admins = useSelector((state) => state.AdminReducer.adminList);
+  const loginApiFailure = useSelector((state) => state.AdminReducer.adminLoginApiStatus);
   const [invalidCreds, setInvalidCreds] = useState(false);
   const navigate = useNavigate();
 

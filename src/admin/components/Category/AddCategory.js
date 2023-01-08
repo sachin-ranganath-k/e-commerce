@@ -16,8 +16,8 @@ import ShowCategory from "./ShowCategory";
 const AddCategory = () => {
   const theme = createTheme();
   const dispatch = useDispatch();
-  const allCategories = useSelector((state) => state.AllCategoriesList);
-  const categoryAddedSuccess = useSelector((state) => state.newCategoryAddedSuccess);
+  const allCategories = useSelector((state) => state.AdminReducer.AllCategoriesList);
+  const categoryAddedSuccess = useSelector((state) => state.AdminReducer.newCategoryAddedSuccess);
   const [category, setCategory] = useState("");
   const [categoryError, setCategoryError] = useState(false);
   const [categoryExist, setCategoryExist] = useState(false);

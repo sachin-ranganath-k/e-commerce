@@ -8,7 +8,7 @@ import {
 
 const ShowCategory = (props) => {
   const dispatch = useDispatch();
-  const allCategories = useSelector((state) => state.AllCategoriesList);
+  const allCategories = useSelector((state) => state.AdminReducer.AllCategoriesList);
 
   useEffect(() => {
     loadData();

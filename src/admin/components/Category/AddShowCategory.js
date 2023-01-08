@@ -18,9 +18,9 @@ import { CATEGORY_ADDED_SUCCESS_STATUS } from "../../redux/AdminActions/AdminAct
 const AddShowCategory = () => {
   const theme = createTheme();
   const dispatch = useDispatch();
-  const allCategories = useSelector((state) => state.AllCategoriesList);
+  const allCategories = useSelector((state) => state.AdminReducer.AllCategoriesList);
   const categoryAddedSuccess = useSelector(
-    (state) => state.newCategoryAddedSuccess
+    (state) => state.AdminReducer.newCategoryAddedSuccess
   );
   const [category, setCategory] = useState("");
   const [categoryError, setCategoryError] = useState(false);

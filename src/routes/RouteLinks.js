@@ -9,6 +9,8 @@ import Dashboard from "../admin/components/Dashboard/Dashboard";
 import FileUpload from "../admin/components/FileUpload";
 import ShowOrders from "../admin/components/Orders/ShowOrders";
 import AddProduct from "../admin/components/Product/AddProduct";
+import RegisterLogin from "../user/components/RegisterLoginLogout/RegisterLogin";
+
 
 const RouteLinks = () => {
   return (
@@ -23,6 +25,8 @@ const RouteLinks = () => {
           <Route path="/addProduct" element={<AddProduct />} />
           <Route path="/adminLogout" element={<AdminLogout />} />
           <Route path="/orders" element={<ShowOrders />} />
+
+          <Route path="/user/register-login" element={<RegisterLogin />} />
 
         </Routes>
       </Router>

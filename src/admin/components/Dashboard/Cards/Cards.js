@@ -1,6 +1,7 @@
 import React from "react";
 
 const Cards = (propsFromCardsParent) => {
+
   return (
     <div>
       <div className="card bg-primary text-white mb-4">

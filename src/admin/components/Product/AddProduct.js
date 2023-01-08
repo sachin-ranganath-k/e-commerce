@@ -23,8 +23,8 @@ const AddProduct = () => {
   const [selectCategory, setSelectCategory] = useState("");
   const [selectBrand, setSelectBrand] = useState("");
   const dispatch = useDispatch();
-  const brandsList = useSelector((state) => state.brands.allBrandsList);
-  const categoriesList = useSelector((state) => state.AllCategoriesList);
+  const brandsList = useSelector((state) => state.AdminReducer.brands.allBrandsList);
+  const categoriesList = useSelector((state) => state.AdminReducer.AllCategoriesList);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -60,16 +60,24 @@ const AddProduct = () => {
 
   const uploadFile = async (file) => {
     const formData = new FormData();
-    formData.append("product_name", product);
+    // formData.append("product_name", product);
     formData.append("productImage", file);
-    formData.append("category_id", selectCategory);
-    formData.append("brand_id", selectBrand);
+    // formData.append("category_id", selectCategory);
+    // formData.append("brand_id", selectBrand);
 
-    return await axios.post(ADD_PRODUCT_API, formData, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
+    try {
+      // make axios post request
+      const response = await axios({
+        method: "post",
+        url: `${ADD_PRODUCT_API}`,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      console.log(response)
+    } catch(error) {
+      console.log(error)
+    }
+  
   };
 
   const handleCategory = (e) => {

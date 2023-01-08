@@ -14,11 +14,13 @@ const CardsParent = () => {
     dispatch(totalOrders());
   }, []);
 
-  const todayOrdersList = useSelector((state) => state.todayOrdersList);
+  const todayOrdersList = useSelector((state) => state.AdminReducer.todayOrdersList);
   const todayOrdersCount = todayOrdersList.length;
+  const todayOrdersTotal = todayOrdersCount === undefined ? 0 : todayOrdersCount;
 
-  const totalOrdersList = useSelector((state) => state.totalOrdersList);
+  const totalOrdersList = useSelector((state) => state.AdminReducer.totalOrdersList);
   const totalOrdersCount = totalOrdersList.length;
+  const totalOrdersTotal = totalOrdersCount === undefined ? 0 : totalOrdersCount;
 
   const weekday = [
     "Sunday",
@@ -45,12 +47,12 @@ const CardsParent = () => {
     <div>
       <div className="row">
         <div className="col-xl-3 col-md-6">
-          <Cards title="Today's Orders" value={todayOrdersCount} />
+          <Cards title="Today's Orders" value={todayOrdersTotal} />
           <br />
         </div>
 
         <div className="col-xl-3 col-md-6">
-          <Cards title="Total Orders" value={totalOrdersCount} />
+          <Cards title="Total Orders" value={totalOrdersTotal} />
         </div>
 
         <div className="col-xl-3 col-md-6">

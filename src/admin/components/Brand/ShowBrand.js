@@ -8,7 +8,7 @@ import {
 
 const ShowBrand = (props) => {
   const dispatch = useDispatch();
-  const allBrands = useSelector((state) => state.brands.allBrandsList);
+  const allBrands = useSelector((state) => state.AdminReducer.brands.allBrandsList);
 
   useEffect(() => {
     loadData();
