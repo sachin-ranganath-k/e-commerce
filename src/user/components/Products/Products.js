@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllProducts } from "../../redux/userActions/UserActions";
+import {
+  fetchAllProducts,
+  add_ToCart,
+} from "../../redux/userActions/UserActions";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,50 +14,72 @@ import Typography from "@mui/material/Typography";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 import UserNavbar from "../UserNavbar/UserNavbar";
+import { fetchBrands } from "../../../admin/redux/AdminActions/AdminActions";
+import Skeleton from "../../../utils/Skeleton";
 
 const Products = () => {
   const dispatch = useDispatch();
   const productsList = useSelector((state) => state.UserReducer.productsList);
+  const addToCartStatus = useSelector(
+    (state) => state.UserReducer.cart.addToCartStatus
+  );
+  const isLoading = useSelector((state) => state.UserReducer.cart.isLoading);
 
   useEffect(() => {
     dispatch(fetchAllProducts());
+    dispatch(fetchBrands());
   }, []);
 
-  const addToCart = (productId, userId) => {
-    let a = `${productId} ${userId}`;
-    alert(a + " " + "Yet to develop");
+  console.log(addToCartStatus);
+
+  const addToCart = (productId, userId, qty) => {
+    const cartData = {
+      user_id: userId,
+      product_id: productId,
+      quantity: qty,
+    };
+    dispatch(add_ToCart(JSON.stringify(cartData)));
   };
 
   return (
     <div>
       <UserNavbar />
+
       <h2 style={{ textAlign: "center" }}>Available Products</h2>
       <br />
       <div className="container col-md-12">
+       
         <div className="row">
+        {isLoading && <Skeleton />}
           {productsList.map((product) => (
             <div className="col-md-3">
-              <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                  sx={{ height: 140 }}
-                  image={product.image_name}
-                  title={product.image_name}
+              <div className="card" style={{ maxWidth: "100%" }}>
+                <img
+                  className="card-img-top"
+                  src={product?.image_name}
+                  alt="Card image"
+                  height="200px"
+                  width="50px"
                 />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {product.product_name}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button
-                    variant="contained"
-                    endIcon={<AddShoppingCartIcon />}
-                    onClick={() => addToCart(product.product_id, "USER")}
-                  >
-                    Add To Cart
-                  </Button>
-                </CardActions>
-              </Card>
+                <div className="card-body">
+                  <h5 className="card-title">{product?.product_name}</h5>
+                  <br />
+                  {addToCartStatus ? (
+                    <button className="btn btn-warning" disabled>
+                      Added to cart
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-success"
+                      onClick={() =>
+                        addToCart(product.product_id, "USERID", "1")
+                      }
+                    >
+                      Add to cart
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           ))}
         </div>

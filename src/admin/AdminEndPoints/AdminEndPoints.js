@@ -17,3 +17,7 @@ export const ADD_BRAND_API ="http://gangadharpoly.org/ecom/admin/brand/insert_br
 //Products
 export const ADD_PRODUCT_API ="https://gangadharpoly.org/ecom/admin/product_react/insert_product_api.php";
 export const FETCH_PRODUCTS_API ="https://abhibulbule.000webhostapp.com/Product_latest/admin/product/get_products_api.php";
+
+
+//Cart
+export const ADD_TO_CART_API="https://abhibulbule.000webhostapp.com/cart/add_cart_api.php"
