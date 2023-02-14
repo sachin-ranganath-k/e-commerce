@@ -5,14 +5,6 @@ import {
   add_ToCart,
 } from "../../redux/userActions/UserActions";
 
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-
 import UserNavbar from "../UserNavbar/UserNavbar";
 import { fetchBrands } from "../../../admin/redux/AdminActions/AdminActions";
 import Skeleton from "../../../utils/Skeleton";
@@ -20,8 +12,8 @@ import Skeleton from "../../../utils/Skeleton";
 const Products = () => {
   const dispatch = useDispatch();
   const productsList = useSelector((state) => state.UserReducer.productsList);
-  const addToCartStatus = useSelector(
-    (state) => state.UserReducer.cart.addToCartStatus
+  const { addToCartStatus, isAddToCartLoading } = useSelector(
+    (state) => state.UserReducer.cart
   );
   const isLoading = useSelector((state) => state.UserReducer.cart.isLoading);
 
@@ -48,9 +40,8 @@ const Products = () => {
       <h2 style={{ textAlign: "center" }}>Available Products</h2>
       <br />
       <div className="container col-md-12">
-       
         <div className="row">
-        {isLoading && <Skeleton />}
+          {isLoading && <Skeleton />}
           {productsList.map((product) => (
             <div className="col-md-3">
               <div className="card" style={{ maxWidth: "100%" }}>
@@ -68,11 +59,15 @@ const Products = () => {
                     <button className="btn btn-warning" disabled>
                       Added to cart
                     </button>
+                  ) : isAddToCartLoading ? (
+                    <button className="btn btn-success" disabled>
+                      Adding to cart
+                    </button>
                   ) : (
                     <button
                       className="btn btn-success"
                       onClick={() =>
-                        addToCart(product.product_id, "USERID", "1")
+                        addToCart(product.product_id, "aF3A3Kl9", "1")
                       }
                     >
                       Add to cart

@@ -21,3 +21,4 @@ export const FETCH_PRODUCTS_API ="https://abhibulbule.000webhostapp.com/Product_
 
 //Cart
 export const ADD_TO_CART_API="https://abhibulbule.000webhostapp.com/cart/add_cart_api.php"
+export const FETCH_ITEMS_FROM_CART_OF_PERSON_API="https://abhibulbule.000webhostapp.com/cart/get_cart_api_by_getMethod.php?user_id=aF3A3Kl9"

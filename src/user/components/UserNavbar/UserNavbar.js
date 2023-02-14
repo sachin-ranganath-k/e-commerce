@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchItemsFromCartOfPerson } from "../../redux/userActions/UserActions";
 
 const UserNavbar = () => {
+  const dispatch = useDispatch();
+  const { cartIemsofPerson } = useSelector((state) => state.UserReducer.cart);
+
+  useEffect(() => {
+    dispatch(fetchItemsFromCartOfPerson());
+  }, [cartIemsofPerson]);
+
+  const noOfItems = cartIemsofPerson.length === 0 ? 0 : cartIemsofPerson.length;
+
   return (
     <div>
       <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -39,7 +50,7 @@ const UserNavbar = () => {
               to="/yetToDevelop"
               style={{ textDecoration: "none", color: "white" }}
             >
-              Cart <sup>2</sup>
+              Cart <sup>{noOfItems}</sup>
             </Link>
           </div>
         </div>
