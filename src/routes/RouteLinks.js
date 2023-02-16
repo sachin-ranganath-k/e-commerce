@@ -9,6 +9,7 @@ import Dashboard from "../admin/components/Dashboard/Dashboard";
 import FileUpload from "../admin/components/FileUpload";
 import ShowOrders from "../admin/components/Orders/ShowOrders";
 import AddProduct from "../admin/components/Product/AddProduct";
+import UserCart from "../user/components/cart/UserCart";
 
 import Products from "../user/components/Products/Products";
 import RegisterLogin from "../user/components/RegisterLoginLogout/RegisterLogin";
@@ -32,6 +33,8 @@ const RouteLinks = () => {
           <Route path="/user/register-login" element={<RegisterLogin />} />
           <Route path="/yetToDevelop" element={<YetToDevelop />} />
           <Route path="/userDashboard" element={<Products />} />
+          <Route path="/cart" element={<UserCart />} />
+
 
         </Routes>
       </Router>

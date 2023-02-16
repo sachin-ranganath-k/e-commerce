@@ -9,7 +9,7 @@ import {
 const initialState = {
   productsList: [],
   cart: {
-    cartIemsofPerson: [],
+    cartItemsofPerson: [],
     addToCartStatus: false,
     isLoading: false,
     isAddToCartLoading: false,
@@ -30,11 +30,11 @@ const UserReducer = (state = initialState, action) => {
     case FETCH_PRODUCTS:
       return {
         ...state,
-        productsList: action.payload,
         cart: {
           ...state.cart,
           isLoading: false,
         },
+        productsList: action.payload,
       };
     case ADD_TO_CART_STATUS:
       return {
@@ -61,7 +61,7 @@ const UserReducer = (state = initialState, action) => {
         ...state,
         cart: {
           ...state.cart,
-          cartIemsofPerson: action.payload,
+          cartItemsofPerson: action.payload,
         },
       };
 

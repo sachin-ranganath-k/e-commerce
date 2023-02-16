@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from "react-router-dom";
 import { fetchItemsFromCartOfPerson } from "../../redux/userActions/UserActions";
 
 const UserNavbar = () => {
   const dispatch = useDispatch();
-  const { cartIemsofPerson } = useSelector((state) => state.UserReducer.cart);
+  const { cartItemsofPerson } = useSelector((state) => state.UserReducer.cart);
 
   useEffect(() => {
     dispatch(fetchItemsFromCartOfPerson());
-  }, [cartIemsofPerson]);
+  }, [cartItemsofPerson]);
 
-  const noOfItems = cartIemsofPerson.length === 0 ? 0 : cartIemsofPerson.length;
+  const noOfItems = cartItemsofPerson.length === 0 ? 0 : cartItemsofPerson.length;
 
   return (
     <div>
@@ -47,10 +48,11 @@ const UserNavbar = () => {
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Link
-              to="/yetToDevelop"
+              to="/cart"
               style={{ textDecoration: "none", color: "white" }}
             >
-              Cart <sup>{noOfItems}</sup>
+              Cart<ShoppingCartIcon />
+               <sup>{noOfItems}</sup>
             </Link>
           </div>
         </div>

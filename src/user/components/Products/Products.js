@@ -22,8 +22,6 @@ const Products = () => {
     dispatch(fetchBrands());
   }, []);
 
-  console.log(addToCartStatus);
-
   const addToCart = (productId, userId, qty) => {
     const cartData = {
       user_id: userId,
@@ -67,7 +65,7 @@ const Products = () => {
                     <button
                       className="btn btn-success"
                       onClick={() =>
-                        addToCart(product.product_id, "aF3A3Kl9", "1")
+                        addToCart(product.product_id, "lL8rb1c7", "10")
                       }
                     >
                       Add to cart
