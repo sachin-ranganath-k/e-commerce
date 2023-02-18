@@ -41,7 +41,7 @@ export const ADD_BRAND_API ="http://gangadharpoly.org/ecom/admin/brand/insert_br
 
 //Products
 export const ADD_PRODUCT_API ="https://gangadharpoly.org/ecom/admin/product_react/insert_product_api.php";
-export const FETCH_PRODUCTS_API ="http://localhost/ecom/admin/product%20_api/get_products_api.php";
+export const FETCH_PRODUCTS_API ="http://gangadharpoly.org/ecom/admin/product%20_api/get_products_api.php";
 
 
 //Cart
