@@ -71,7 +71,7 @@ export const addCategory = (payload) => {
         dispatch({ type: CATEGORY_ADDED_SUCCESS_STATUS, payload: true });
       })
       .catch((err) => {
-        console.log(err);
+      //  console.log(err);
       });
   };
 };
@@ -85,7 +85,7 @@ export const addBrand = (payload) => {
        dispatch({ type: BRAND_ADDED_SUCCESS_STATUS, payload: true });
       })
       .catch((err) => {
-        console.log(err);
+      //  console.log(err);
       });
   };
 };
@@ -98,7 +98,7 @@ export const todayOrders = () => {
         dispatch({ type: TODAY_ORDERS_LIST, payload: res.data });
       })
       .catch((err) => {
-        console.log("Err")
+       // console.log("Err")
       });
   };
 };
@@ -111,7 +111,7 @@ export const totalOrders = () => {
         dispatch({ type: TOTAL_ORDERS_LIST, payload: res.data });
       })
       .catch((err) => {
-        console.log("Err")
+      //  console.log("Err")
       });
   };
 };

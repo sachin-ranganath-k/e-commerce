@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -11,19 +11,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme();
 
 const UserLogin = () => {
-  const [inputFields, setInputFields] = useState({
-    userMobile: "",
-  });
+ const userMobile=useRef("")
 
-  const handleFields = (e) => {
-    const { name, value } = e.target;
-    setInputFields({
-      ...inputFields,
-      [name]: value,
-    });
-  };
-
-  const { userMobile } = inputFields;
 
   const submitData = () => {
     alert("Development is going on..!");
@@ -55,8 +44,7 @@ const UserLogin = () => {
                 id="userContact"
                 label="Enter Mobile No."
                 name="userMobile"
-                value={userMobile}
-                onChange={handleFields}
+                ref={userMobile}
                 autoFocus
               />
               <Button

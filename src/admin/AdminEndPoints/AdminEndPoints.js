@@ -45,5 +45,6 @@ export const FETCH_PRODUCTS_API ="http://localhost/ecom/admin/product%20_api/get
 
 
 //Cart
-export const ADD_TO_CART_API="http://localhost/ecom/user/cart/add_cart_api.php"
-export const FETCH_ITEMS_FROM_CART_OF_PERSON_API="http://localhost/ecom/user/cart/get_cart_api.php?user_id=lL8rb1c7"
+export const ADD_TO_CART_API="http://gangadharpoly.org/ecom/user/cart/add_cart_api.php"
+export const FETCH_ITEMS_FROM_CART_OF_PERSON_API="http://gangadharpoly.org/ecom/user/cart/get_cart_api.php?user_id=lL8rb1c7"
+export const DELETE_ITEM_FROM_CART_API="http://gangadharpoly.org/ecom/user/cart/delete_cart_api.php"

@@ -1,6 +1,7 @@
 import {
   ADD_TO_CART_LOADING,
   ADD_TO_CART_STATUS,
+  DELETE_ITEM_FROM_CART,
   FETCH_CART_ITEMS_OF_PERSON,
   FETCH_PRODUCTS,
   FETCH_PRODUCTS_LOADING,
@@ -43,6 +44,7 @@ const UserReducer = (state = initialState, action) => {
           ...state.cart,
           isAddToCartLoading: false,
           addToCartStatus: true,
+          cartItemsofPerson: [...state.cart.cartItemsofPerson, action.payload],
         },
       };
 
@@ -62,6 +64,18 @@ const UserReducer = (state = initialState, action) => {
         cart: {
           ...state.cart,
           cartItemsofPerson: action.payload,
+        },
+      };
+
+    case DELETE_ITEM_FROM_CART:
+      const filteredItem = state.cart.cartItemsofPerson.filter(
+        (item) => item.cart_id !== action.payload
+      );
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          cartItemsofPerson: filteredItem,
         },
       };
 

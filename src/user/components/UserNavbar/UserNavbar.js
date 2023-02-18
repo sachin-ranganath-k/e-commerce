@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from "@mui/material/Badge";
+import MailIcon from "@mui/icons-material/Mail";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 import { fetchItemsFromCartOfPerson } from "../../redux/userActions/UserActions";
 
@@ -10,9 +12,11 @@ const UserNavbar = () => {
 
   useEffect(() => {
     dispatch(fetchItemsFromCartOfPerson());
-  }, [cartItemsofPerson]);
+  }, [cartItemsofPerson.length, dispatch]);
 
-  const noOfItems = cartItemsofPerson.length === 0 ? 0 : cartItemsofPerson.length;
+  const noOfItems = useMemo(() => {
+    return cartItemsofPerson.length === 0 ? 0 : cartItemsofPerson.length;
+  }, [cartItemsofPerson.length]);
 
   return (
     <div>
@@ -47,12 +51,12 @@ const UserNavbar = () => {
               My Profile
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Link
-              to="/cart"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              Cart<ShoppingCartIcon />
-               <sup>{noOfItems}</sup>
+            <Link to="/cart" style={{ textDecoration: "none", color: "white" }}>
+              Cart
+              <ShoppingCartIcon />
+              <sup>
+                <Badge badgeContent={noOfItems} color="secondary" />
+              </sup>
             </Link>
           </div>
         </div>
