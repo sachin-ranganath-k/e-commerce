@@ -9,10 +9,17 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { patterns, UserRegisterErrors } from "../../../constants/constants";
 import { handleRegisterError } from "../../../utils/UserRegisterErrors";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../redux/userActions/UserActions";
+import AlertMessage from "../../../admin/Alert/Alert";
 
 const theme = createTheme();
 
 const UserRegister = () => {
+  const dispatch = useDispatch();
+  const { isUserRegisterSuccess } = useSelector(
+    (state) => state.UserReducer.userRegister
+  );
   const [fieldError, setFieldError] = useState({
     userNameError: false,
     userMobileError: false,
@@ -30,20 +37,27 @@ const UserRegister = () => {
   } = fieldError;
 
   const userName = useRef(null);
-  const userMobile = useRef("");
-  const city = useRef("");
-  const shopAddress = useRef("");
-  const pinCode = useRef("");
+  const userMobile = useRef(null);
+  const city = useRef(null);
+  const shopAddress = useRef(null);
+  const pinCode = useRef(null);
 
   const validateFields = () => {
-    if (userName.current.value === "" || !patterns.userName.test(userName.current.value)) {
+    let isValid = true;
+    if (
+      userName.current.value === "" ||
+      !patterns.userName.test(userName.current.value)
+    ) {
       setFieldError((prevState) => ({ ...prevState, userNameError: true }));
       setTimeout(() => {
         setFieldError((prevState) => ({ ...prevState, userNameError: false }));
       }, 4000);
-      return false;
+      isValid = false;
     }
-    if (userMobile.current.value === "" || patterns.userContact.test(userMobile.current.value)) {
+    if (
+      userMobile.current.value === "" ||
+      !patterns.userContact.test(userMobile.current.value)
+    ) {
       setFieldError((prevState) => ({ ...prevState, userMobileError: true }));
       setTimeout(() => {
         setFieldError((prevState) => ({
@@ -51,19 +65,12 @@ const UserRegister = () => {
           userMobileError: false,
         }));
       }, 4000);
-      return false;
+      isValid = false;
     }
-    else{
-        alert("Vaild")
-    }
-    if (city.current.value === "" || !patterns.userName.test(city)) {
-      setFieldError((prevState) => ({ ...prevState, cityError: true }));
-      setTimeout(() => {
-        setFieldError((prevState) => ({ ...prevState, cityError: false }));
-      }, 4000);
-      return false;
-    }
-    if (shopAddress.current.value === "" || patterns.shopAddress.test(shopAddress)) {
+    if (
+      shopAddress.current.value === "" ||
+      !patterns.shopAddress.test(shopAddress.current.value)
+    ) {
       setFieldError((prevState) => ({ ...prevState, shopAddressError: true }));
       setTimeout(() => {
         setFieldError((prevState) => ({
@@ -71,19 +78,49 @@ const UserRegister = () => {
           shopAddressError: false,
         }));
       }, 4000);
-      return false;
+      isValid = false;
     }
-    if (pinCode.current.value === "" || patterns.pinCode.test(pinCode)) {
+    if (
+      city.current.value === "" ||
+      !patterns.userName.test(city.current.value)
+    ) {
+      setFieldError((prevState) => ({ ...prevState, cityError: true }));
+      setTimeout(() => {
+        setFieldError((prevState) => ({ ...prevState, cityError: false }));
+      }, 4000);
+      isValid = false;
+    }
+
+    if (
+      pinCode.current.value === "" ||
+      !patterns.pinCode.test(pinCode.current.value)
+    ) {
       setFieldError((prevState) => ({ ...prevState, pinCodeError: true }));
       setTimeout(() => {
         setFieldError((prevState) => ({ ...prevState, pinCodeError: false }));
       }, 4000);
-      return false;
+      isValid = false;
     }
+    return isValid;
   };
 
   const submitData = () => {
-    alert("Development is going on..!");
+    const formData = {
+      user_name: userName.current.value,
+      contact_num: userMobile.current.value,
+      shop_address: shopAddress.current.value,
+      city: city.current.value,
+      pincode: pinCode.current.value,
+    };
+    if (validateFields()) {
+      dispatch(registerUser(JSON.stringify(formData)));
+      
+      userName.current.value = null;
+      userMobile.current.value = null;
+      shopAddress.current.value = null;
+      city.current.value = null;
+      pinCode.current.value = null;
+    }
   };
 
   return (
@@ -105,6 +142,8 @@ const UserRegister = () => {
               User Register
             </Typography>
             <Box component="form" noValidate sx={{ mt: 1 }}>
+              {isUserRegisterSuccess &&
+                AlertMessage("success", "Registered Successfully..!")}
               <TextField
                 margin="normal"
                 required
@@ -114,7 +153,8 @@ const UserRegister = () => {
                 inputRef={userName}
                 autoFocus
               />
-              {userNameError && handleRegisterError(UserRegisterErrors.userNameError)}
+              {userNameError &&
+                handleRegisterError(UserRegisterErrors.userNameError)}
               <TextField
                 margin="normal"
                 required
@@ -123,17 +163,18 @@ const UserRegister = () => {
                 label="Enter Mobile No."
                 inputRef={userMobile}
               />
-               {userMobileError && handleRegisterError(UserRegisterErrors.userContactError)}
-              <br />
+              {userMobileError &&
+                handleRegisterError(UserRegisterErrors.userContactError)}
               <br />
               <textarea
                 className="form-control"
                 required
                 id="shopAddress"
                 placeholder="Enter Shop Address *"
-                inputRef={shopAddress}
+                ref={shopAddress}
               />
-              {shopAddressError && handleRegisterError(UserRegisterErrors.shopAddressError)}
+              {shopAddressError &&
+                handleRegisterError(UserRegisterErrors.shopAddressError)}
               <TextField
                 margin="normal"
                 required
@@ -151,11 +192,12 @@ const UserRegister = () => {
                 label="Enter City Pincode"
                 inputRef={pinCode}
               />
-              {pinCodeError && handleRegisterError(UserRegisterErrors.pinCodeError)}
+              {pinCodeError &&
+                handleRegisterError(UserRegisterErrors.pinCodeError)}
               <Button
                 fullWidth
                 variant="contained"
-                onClick={validateFields}
+                onClick={submitData}
                 sx={{ mt: 3, mb: 2 }}
               >
                 Register

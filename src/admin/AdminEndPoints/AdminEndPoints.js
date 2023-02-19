@@ -48,3 +48,9 @@ export const FETCH_PRODUCTS_API ="http://gangadharpoly.org/ecom/admin/product%20
 export const ADD_TO_CART_API="http://gangadharpoly.org/ecom/user/cart/add_cart_api.php"
 export const FETCH_ITEMS_FROM_CART_OF_PERSON_API="http://gangadharpoly.org/ecom/user/cart/get_cart_api.php?user_id=lL8rb1c7"
 export const DELETE_ITEM_FROM_CART_API="http://gangadharpoly.org/ecom/user/cart/delete_cart_api.php"
+
+
+
+
+//User
+export const REGISTER_USER_API="http://gangadharpoly.org/ecom/user/user/user_register_api.php"

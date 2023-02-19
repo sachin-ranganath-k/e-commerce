@@ -5,9 +5,14 @@ import {
   FETCH_CART_ITEMS_OF_PERSON,
   FETCH_PRODUCTS,
   FETCH_PRODUCTS_LOADING,
+  REGISTER_USER,
 } from "../userActions/UserActionConstants";
 
 const initialState = {
+  userRegister: {
+    registeredUsers: [],
+    isUserRegisterSuccess: false,
+  },
   productsList: [],
   cart: {
     cartItemsofPerson: [],
@@ -19,6 +24,16 @@ const initialState = {
 
 const UserReducer = (state = initialState, action) => {
   switch (action.type) {
+    case REGISTER_USER:
+      return {
+        ...state,
+        userRegister: {
+          ...state.userRegister,
+          registeredUsers: [...state.userRegister.registeredUsers, action.payload],
+          isUserRegisterSuccess:true
+        },
+      };
+
     case FETCH_PRODUCTS_LOADING:
       return {
         ...state,
@@ -37,6 +52,7 @@ const UserReducer = (state = initialState, action) => {
         },
         productsList: action.payload,
       };
+
     case ADD_TO_CART_STATUS:
       return {
         ...state,

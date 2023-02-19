@@ -30,7 +30,7 @@ const RouteLinks = () => {
           <Route path="/adminLogout" element={<AdminLogout />} />
           <Route path="/orders" element={<ShowOrders />} />
 
-          <Route path="user-register-login" element={<RegisterLogin />} />
+          <Route path="/user-register-login" element={<RegisterLogin />} />
           <Route path="/yetToDevelop" element={<YetToDevelop />} />
           <Route path="/userDashboard" element={<Products />} />
           <Route path="/cart" element={<UserCart />} />
