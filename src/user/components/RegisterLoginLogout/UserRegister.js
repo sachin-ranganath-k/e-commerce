@@ -200,7 +200,12 @@ const UserRegister = () => {
               {pinCodeError &&
                 handleRegisterError(UserRegisterErrors.pinCodeError)}
               {isRegisterLoginLoading ? (
-                <button class="btn btn-primary" type="button" disabled>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  color="secondary"
+                >
                   &nbsp;
                   <span
                     class="spinner-border spinner-border-sm"
@@ -208,7 +213,7 @@ const UserRegister = () => {
                     aria-hidden="true"
                   ></span>
                   &nbsp; Registering Please Wait...
-                </button>
+                </Button>
               ) : (
                 <Button
                   fullWidth
