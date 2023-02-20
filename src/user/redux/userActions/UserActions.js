@@ -13,14 +13,15 @@ import {
   FETCH_CART_ITEMS_OF_PERSON,
   FETCH_PRODUCTS,
   FETCH_PRODUCTS_LOADING,
+  LOAD_REGISTER_LOGIN,
   REGISTER_USER,
 } from "./UserActionConstants";
 
 export const registerUser = (payload) => {
   return function (dispatch) {
-    // dispatch({
-    //   type: REGISTER_USER,
-    // });
+    dispatch({
+      type: LOAD_REGISTER_LOGIN,
+    });
     axios
       .post(`${REGISTER_USER_API}`, payload)
       .then((res) => {
@@ -28,7 +29,7 @@ export const registerUser = (payload) => {
         dispatch({ type: REGISTER_USER, payload: result });
       })
       .catch((err) => {
-        // console.log("Error");
+         console.log("Error");
       });
   };
 };

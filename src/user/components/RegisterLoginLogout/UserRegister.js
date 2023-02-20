@@ -7,17 +7,22 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { patterns, UserRegisterErrors } from "../../../constants/constants";
+import {
+  patterns,
+  SignIn_SignUp,
+  UserRegisterErrors,
+} from "../../../constants/constants";
 import { handleRegisterError } from "../../../utils/UserRegisterErrors";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../redux/userActions/UserActions";
 import AlertMessage from "../../../admin/Alert/Alert";
+import { Link } from "react-router-dom";
 
 const theme = createTheme();
 
 const UserRegister = () => {
   const dispatch = useDispatch();
-  const { isUserRegisterSuccess } = useSelector(
+  const { isUserRegisterSuccess, isRegisterLoginLoading } = useSelector(
     (state) => state.UserReducer.userRegister
   );
   const [fieldError, setFieldError] = useState({
@@ -114,7 +119,7 @@ const UserRegister = () => {
     };
     if (validateFields()) {
       dispatch(registerUser(JSON.stringify(formData)));
-      
+
       userName.current.value = null;
       userMobile.current.value = null;
       shopAddress.current.value = null;
@@ -129,7 +134,7 @@ const UserRegister = () => {
         <Container component="main" maxWidth="xs">
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: 2,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -194,14 +199,29 @@ const UserRegister = () => {
               />
               {pinCodeError &&
                 handleRegisterError(UserRegisterErrors.pinCodeError)}
-              <Button
-                fullWidth
-                variant="contained"
-                onClick={submitData}
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Register
-              </Button>
+              {isRegisterLoginLoading ? (
+                <button class="btn btn-primary" type="button" disabled>
+                  &nbsp;
+                  <span
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                  &nbsp; Registering Please Wait...
+                </button>
+              ) : (
+                <Button
+                  fullWidth
+                  variant="contained"
+                  onClick={submitData}
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Register
+                </Button>
+              )}
+              <Link to="/user-login" style={{ textDecoration: "none" }}>
+                {SignIn_SignUp.ALREADY_HAVE_ACCOUNT}
+              </Link>
             </Box>
           </Box>
         </Container>

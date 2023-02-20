@@ -13,6 +13,8 @@ import UserCart from "../user/components/cart/UserCart";
 
 import Products from "../user/components/Products/Products";
 import RegisterLogin from "../user/components/RegisterLoginLogout/RegisterLogin";
+import UserLogin from "../user/components/RegisterLoginLogout/UserLogin";
+import UserRegister from "../user/components/RegisterLoginLogout/UserRegister";
 import YetToDevelop from "../user/components/YetToDevelop";
 
 
@@ -30,7 +32,8 @@ const RouteLinks = () => {
           <Route path="/adminLogout" element={<AdminLogout />} />
           <Route path="/orders" element={<ShowOrders />} />
 
-          <Route path="/user-register-login" element={<RegisterLogin />} />
+          <Route path="/user-register" element={<UserRegister />} />
+          <Route path="/user-login" element={<UserLogin />} />
           <Route path="/yetToDevelop" element={<YetToDevelop />} />
           <Route path="/userDashboard" element={<Products />} />
           <Route path="/cart" element={<UserCart />} />

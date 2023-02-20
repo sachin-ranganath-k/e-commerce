@@ -2,6 +2,8 @@ export const SignIn_SignUp = {
   SIGN_IN: "Sign In",
   ENTER_EMAIL_ADDRESS: "Enter Email ID",
   ENTER_PASSWORD: "Enter Password",
+  ALREADY_HAVE_ACCOUNT:"Already have account? Login here",
+  DONT_HAVE_ACCOUNT:"Don't have account? Register here"
 };
 
 export const UserRegisterErrors = {
