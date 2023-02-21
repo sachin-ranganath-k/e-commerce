@@ -13,9 +13,11 @@ import AlertMessage from "../../../admin/Alert/Alert";
 const Products = () => {
   const dispatch = useDispatch();
   const productsList = useSelector((state) => state.UserReducer.productsList);
-  const { addToCartStatus, isAddToCartLoading, cartItemsofPerson } =
-    useSelector((state) => state.UserReducer.cart);
+  const {isAddToCartLoading, cartItemsofPerson } =useSelector((state) => state.UserReducer.cart);
   const isLoading = useSelector((state) => state.UserReducer.cart.isLoading);
+
+
+  const user_id=sessionStorage.getItem("userId");
 
   useEffect(() => {
     dispatch(fetchAllProducts());
@@ -74,7 +76,7 @@ const Products = () => {
                           <button
                             className="btn btn-success"
                             onClick={() =>
-                              addToCart(product.product_id, "lL8rb1c7", "10")
+                              addToCart(product.product_id, user_id, "10")
                             }
                           >
                             Add to cart

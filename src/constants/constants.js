@@ -3,7 +3,8 @@ export const SignIn_SignUp = {
   ENTER_EMAIL_ADDRESS: "Enter Email ID",
   ENTER_PASSWORD: "Enter Password",
   ALREADY_HAVE_ACCOUNT:"Already have account? Login here",
-  DONT_HAVE_ACCOUNT:"Don't have account? Register here"
+  DONT_HAVE_ACCOUNT:"Don't have account? Register here",
+  USER_LOGIN_ERROR:"Mobile number not registered..!"
 };
 
 export const UserRegisterErrors = {

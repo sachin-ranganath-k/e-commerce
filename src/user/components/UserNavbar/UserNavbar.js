@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Badge from "@mui/material/Badge";
-import MailIcon from "@mui/icons-material/Mail";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 import { fetchItemsFromCartOfPerson } from "../../redux/userActions/UserActions";
@@ -77,21 +76,21 @@ const UserNavbar = () => {
               className="dropdown-menu dropdown-menu-end"
               aria-labelledby="navbarDropdown"
             >
-              <li>
+              {/* <li>
                 <a className="dropdown-item" href="#!">
                   Settings
                 </a>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <a className="dropdown-item" href="#!">
                   Activity Log
                 </a>
-              </li>
+              </li> */}
               <li>
                 <hr className="dropdown-divider" />
               </li>
               <li>
-                <Link to="/adminLogout" className="dropdown-item">
+                <Link to="/user-logout" className="dropdown-item">
                   Logout
                 </Link>
               </li>

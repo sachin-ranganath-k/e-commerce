@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -8,15 +8,47 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { SignIn_SignUp } from "../../../constants/constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../../redux/userActions/UserActions";
+import AlertMessage from "../../../admin/Alert/Alert";
 
 const theme = createTheme();
 
 const UserLogin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const allUsers = useSelector(
+    (state) => state.UserReducer.userRegister.allUsers
+  );
   const userMobile = useRef("");
+  const [loginError, setLoginError] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
+
+  // const isUserExistsValidate = () => {
+  //   let isUserExist=true;
+  //   for (const user of allUsers) {
+  //     if (user?.contact_num === userMobile.current.value) {
+  //       isUserExist = true;
+  //     } else {
+  //       isUserExist = false;
+  //     }
+  //     return isUserExist;
+  //   }
+  // };
 
   const submitData = () => {
-    alert("Development is going on..!");
+    for (const user of allUsers) {
+      if (user?.contact_num === userMobile.current.value) {
+        sessionStorage.setItem("userId", user.user_id);
+        navigate("/userDashboard");
+        return;
+      }
+    }
+    setLoginError(true);
   };
 
   return (
@@ -38,6 +70,8 @@ const UserLogin = () => {
               User Login
             </Typography>
             <Box component="form" noValidate sx={{ mt: 1 }}>
+              {loginError &&
+                AlertMessage("error", SignIn_SignUp.USER_LOGIN_ERROR)}
               <TextField
                 margin="normal"
                 required
@@ -45,7 +79,7 @@ const UserLogin = () => {
                 id="userContact"
                 label="Enter Mobile No."
                 name="userMobile"
-                ref={userMobile}
+                inputRef={userMobile}
                 autoFocus
               />
               <Button

@@ -14,6 +14,7 @@ import UserCart from "../user/components/cart/UserCart";
 import Products from "../user/components/Products/Products";
 import RegisterLogin from "../user/components/RegisterLoginLogout/RegisterLogin";
 import UserLogin from "../user/components/RegisterLoginLogout/UserLogin";
+import UserLogout from "../user/components/RegisterLoginLogout/UserLogout";
 import UserRegister from "../user/components/RegisterLoginLogout/UserRegister";
 import YetToDevelop from "../user/components/YetToDevelop";
 
@@ -34,6 +35,7 @@ const RouteLinks = () => {
 
           <Route path="/user-register" element={<UserRegister />} />
           <Route path="/user-login" element={<UserLogin />} />
+          <Route path="/user-logout" element={<UserLogout />} />
           <Route path="/yetToDevelop" element={<YetToDevelop />} />
           <Route path="/userDashboard" element={<Products />} />
           <Route path="/cart" element={<UserCart />} />

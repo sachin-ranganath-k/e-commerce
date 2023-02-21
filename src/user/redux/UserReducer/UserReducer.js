@@ -5,13 +5,15 @@ import {
   FETCH_CART_ITEMS_OF_PERSON,
   FETCH_PRODUCTS,
   FETCH_PRODUCTS_LOADING,
+  FETCH_USERS_SUCCESS,
   LOAD_REGISTER_LOGIN,
-  REGISTER_USER,
+  REGISTER_USER_SUCCESS,
 } from "../userActions/UserActionConstants";
 
 const initialState = {
   userRegister: {
     registeredUsers: [],
+    allUsers: [],
     isRegisterLoginLoading: false,
     isUserRegisterSuccess: false,
   },
@@ -26,14 +28,17 @@ const initialState = {
 
 const UserReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REGISTER_USER:
+    case REGISTER_USER_SUCCESS:
       return {
         ...state,
         userRegister: {
           ...state.userRegister,
           isUserRegisterSuccess: true,
           isRegisterLoginLoading: false,
-          registeredUsers: [...state.userRegister.registeredUsers,action.payload],
+          registeredUsers: [
+            ...state.userRegister.registeredUsers,
+            action.payload,
+          ],
         },
       };
 
@@ -46,6 +51,16 @@ const UserReducer = (state = initialState, action) => {
           isRegisterLoginLoading: true,
         },
       };
+
+    case FETCH_USERS_SUCCESS: {
+      return {
+        ...state,
+        userRegister: {
+          ...state.userRegister,
+          allUsers: action.payload,
+        },
+      };
+    }
 
     case FETCH_PRODUCTS_LOADING:
       return {
