@@ -180,6 +180,7 @@ const UserRegister = () => {
                 fullWidth
                 id="userName"
                 label="Enter Full Name"
+                placeholder="Enter Full Name"
                 inputRef={userName}
                 autoFocus
               />
@@ -191,6 +192,7 @@ const UserRegister = () => {
                 fullWidth
                 id="userContact"
                 label="Enter Mobile No."
+                placeholder="Enter Mobile No."
                 inputRef={userMobile}
               />
               {userMobileError &&
@@ -211,6 +213,7 @@ const UserRegister = () => {
                 fullWidth
                 id="city"
                 label="Enter City"
+                placeholder="Enter City"
                 inputRef={city}
               />
               {cityError && handleRegisterError(UserRegisterErrors.cityError)}
@@ -220,6 +223,7 @@ const UserRegister = () => {
                 fullWidth
                 id="pinCode"
                 label="Enter City Pincode"
+                placeholder="Enter City Pincode"
                 inputRef={pinCode}
               />
               {pinCodeError &&
