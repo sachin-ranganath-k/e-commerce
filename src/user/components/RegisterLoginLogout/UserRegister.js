@@ -113,7 +113,8 @@ const UserRegister = () => {
     return false;
   };
 
-  const submitData = () => {
+  const submitData = (e) => {
+    e.preventDefault();
     const formData = {
       user_name: userName.current.value,
       contact_num: userMobile.current.value,
