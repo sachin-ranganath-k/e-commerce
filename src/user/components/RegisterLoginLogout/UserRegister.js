@@ -22,6 +22,7 @@ const theme = createTheme();
 
 const UserRegister = () => {
   const [mobileExists, setMobileExists]=useState(false);
+  const [isRegisterSuccess, setIsRegisterSuccess]=useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUsers());
@@ -129,7 +130,7 @@ const UserRegister = () => {
       }
 
       dispatch(registerUser(JSON.stringify(formData)));
-
+      setIsRegisterSuccess(true);
       userName.current.value = null;
       userMobile.current.value = null;
       shopAddress.current.value = null;
@@ -137,6 +138,18 @@ const UserRegister = () => {
       pinCode.current.value = null;
     }
   };
+
+  if (mobileExists) {
+    setTimeout(() => {
+      setMobileExists(false);
+    }, 4000);
+  }
+
+  if (isRegisterSuccess) {
+    setTimeout(() => {
+      setIsRegisterSuccess(false);
+    }, 4000);
+  }
 
   return (
     <>
@@ -160,7 +173,7 @@ const UserRegister = () => {
               {
                 mobileExists &&  AlertMessage("error", "Mobile number already exists..!")
               }
-              {isUserRegisterSuccess &&
+              {isRegisterSuccess &&
                 AlertMessage("success", "Registered Successfully..!")}
               <TextField
                 margin="normal"

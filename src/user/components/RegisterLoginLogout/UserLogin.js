@@ -18,9 +18,7 @@ const theme = createTheme();
 const UserLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const allUsers = useSelector(
-    (state) => state.UserReducer.userRegister.allUsers
-  );
+  const allUsers = useSelector((state) => state.UserReducer.userRegister.allUsers);
   const userMobile = useRef("");
   const [loginError, setLoginError] = useState(false);
 
@@ -50,6 +48,12 @@ const UserLogin = () => {
     }
     setLoginError(true);
   };
+
+  if (loginError) {
+    setTimeout(() => {
+      setLoginError(false);
+    }, 4000);
+  }
 
   return (
     <>
