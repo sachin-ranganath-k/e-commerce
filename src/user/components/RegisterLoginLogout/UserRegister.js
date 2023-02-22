@@ -26,11 +26,9 @@ const UserRegister = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUsers());
-  }, []);
+  }, [isRegisterSuccess]);
 
-  const { isUserRegisterSuccess, isRegisterLoginLoading } = useSelector(
-    (state) => state.UserReducer.userRegister
-  );
+  const { isRegisterLoginLoading } = useSelector((state) => state.UserReducer.userRegister);
   const allUsers = useSelector(
     (state) => state.UserReducer.userRegister.allUsers
   );
@@ -234,7 +232,7 @@ const UserRegister = () => {
                 >
                   &nbsp;
                   <span
-                    class="spinner-border spinner-border-sm"
+                    className="spinner-border spinner-border-sm"
                     role="status"
                     aria-hidden="true"
                   ></span>
