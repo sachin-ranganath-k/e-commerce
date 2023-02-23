@@ -82,10 +82,9 @@ export const add_ToCart = (payload) => {
   };
 };
 
-export const fetchItemsFromCartOfPerson = () => {
+export const fetchItemsFromCartOfPerson = (user_id) => {
   return function (dispatch) {
-    const user_id = sessionStorage.getItem("userId");
-    // dispatch({ type: ADD_TO_CART_LOADING });
+     dispatch({ type: ADD_TO_CART_LOADING });
     axios
       .get(`${FETCH_ITEMS_FROM_CART_OF_PERSON_API}?user_id=${user_id}`)
       .then((res) => {

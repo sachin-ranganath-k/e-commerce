@@ -8,9 +8,10 @@ import { fetchItemsFromCartOfPerson } from "../../redux/userActions/UserActions"
 const UserNavbar = () => {
   const dispatch = useDispatch();
   const { cartItemsofPerson } = useSelector((state) => state.UserReducer.cart);
+  const user_Id=sessionStorage.getItem("userId");
 
   useEffect(() => {
-    dispatch(fetchItemsFromCartOfPerson());
+    dispatch(fetchItemsFromCartOfPerson(user_Id));
   }, [cartItemsofPerson.length, dispatch]);
 
   const noOfItems = useMemo(() => {
