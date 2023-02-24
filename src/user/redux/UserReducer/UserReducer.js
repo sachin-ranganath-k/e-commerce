@@ -5,6 +5,7 @@ import {
   FETCH_CART_ITEMS_OF_PERSON,
   FETCH_PRODUCTS,
   FETCH_PRODUCTS_LOADING,
+  FETCH_SINGLE_USER_SUCCESS,
   FETCH_USERS_SUCCESS,
   LOAD_REGISTER_LOGIN,
   REGISTER_USER_SUCCESS,
@@ -14,6 +15,7 @@ const initialState = {
   userRegister: {
     registeredUsers: [],
     allUsers: [],
+    singleUser: {},
     isRegisterLoginLoading: false,
     isUserRegisterSuccess: false,
   },
@@ -58,6 +60,16 @@ const UserReducer = (state = initialState, action) => {
         userRegister: {
           ...state.userRegister,
           allUsers: action.payload,
+        },
+      };
+    }
+
+    case FETCH_SINGLE_USER_SUCCESS: {
+      return {
+        ...state,
+        userRegister: {
+          ...state.userRegister,
+          singleUser: action.payload,
         },
       };
     }

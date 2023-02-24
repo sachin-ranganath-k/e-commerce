@@ -14,6 +14,7 @@ import {
   FETCH_CART_ITEMS_OF_PERSON,
   FETCH_PRODUCTS,
   FETCH_PRODUCTS_LOADING,
+  FETCH_SINGLE_USER_SUCCESS,
   FETCH_USERS_SUCCESS,
   LOAD_REGISTER_LOGIN,
   REGISTER_USER_SUCCESS,
@@ -43,6 +44,19 @@ export const fetchUsers = () => {
       .get(`${GET_REGISTERED_USERS_API}`)
       .then((res) => {
         dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
+      })
+      .catch((err) => {
+        console.log("Error");
+      });
+  };
+};
+
+export const fetchUser = (user_Id) => {
+  return function (dispatch) {
+    axios
+      .get(`${GET_REGISTERED_USERS_API}?user_id=${user_Id}`)
+      .then((res) => {
+        dispatch({ type: FETCH_SINGLE_USER_SUCCESS, payload: res.data[1] });
       })
       .catch((err) => {
         console.log("Error");

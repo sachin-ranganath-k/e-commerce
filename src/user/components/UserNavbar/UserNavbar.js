@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
-import { fetchItemsFromCartOfPerson } from "../../redux/userActions/UserActions";
+import { fetchItemsFromCartOfPerson, fetchUser } from "../../redux/userActions/UserActions";
 
 const UserNavbar = () => {
   const dispatch = useDispatch();
   const { cartItemsofPerson } = useSelector((state) => state.UserReducer.cart);
-  const user_Id=sessionStorage.getItem("userId");
+  const { singleUser } = useSelector((state) => state.UserReducer.userRegister);
+  const user_Id = sessionStorage.getItem("userId");
 
   useEffect(() => {
     dispatch(fetchItemsFromCartOfPerson(user_Id));
+    dispatch(fetchUser(user_Id));
   }, [cartItemsofPerson.length, dispatch]);
+
 
   const noOfItems = useMemo(() => {
     return cartItemsofPerson.length === 0 ? 0 : cartItemsofPerson.length;
@@ -21,8 +24,8 @@ const UserNavbar = () => {
   return (
     <div>
       <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <Link className="navbar-brand ps-3" to="/dashboard">
-          Dashboard
+        <Link className="navbar-brand ps-3" to="/userDashboard">
+          Welcome {singleUser?.user_name}
         </Link>
 
         <div
@@ -45,7 +48,7 @@ const UserNavbar = () => {
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Link
-              to="/yetToDevelop"
+              to="/myProfile"
               style={{ textDecoration: "none", color: "white" }}
             >
               My Profile
