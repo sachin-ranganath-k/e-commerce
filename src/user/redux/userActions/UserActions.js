@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"
 import {
   ADD_TO_CART_API,
   DELETE_ITEM_FROM_CART_API,
@@ -18,6 +18,7 @@ import {
   LOAD_REGISTER_LOGIN,
   REGISTER_USER_SUCCESS,
 } from "./UserActionConstants";
+
 
 export const registerUser = (payload) => {
   return function (dispatch) {

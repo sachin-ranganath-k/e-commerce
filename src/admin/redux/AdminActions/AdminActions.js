@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"
 import {
   ADD_BRAND_API,
   ADD_CATEGORY_API,
@@ -21,6 +21,7 @@ import {
   TODAY_ORDERS_LIST,
   TOTAL_ORDERS_LIST,
 } from "./AdminActionConstants";
+
 
 export const fetchAdmins = () => {
   return async function (dispatch) {

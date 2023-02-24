@@ -24,8 +24,12 @@ const Cart = () => {
     <>
       <UserNavbar />
       <List>
-        {cartItemsofPerson.length > 0
-          ? cartItemsofPerson.map((item, index) => (
+       
+        {cartItemsofPerson.length === 0
+          ? 
+          <h2 style={{textAlign:"center", marginTop:"5%"}}>Cart is empty..!</h2>
+         : 
+          cartItemsofPerson.map((item, index) => (
               <div className="col-md-12">
                 <div className="row">
                   <div className="col-md-6">
@@ -82,10 +86,18 @@ const Cart = () => {
                 </div>
 
                 <Divider variant="inset" component="li" />
-              </div>
+                
+              </div>  
             ))
-          : <h2 style={{textAlign:"center", marginTop:"5%"}}>Cart is empty..!</h2>}
+            }
       </List>
+      {cartItemsofPerson.length>0 && (
+        <div style={{ textAlign: "center", margin: "2%" }}>
+          <Button variant="contained" color="warning">
+            Checkout
+          </Button>
+        </div>
+      )}
     </>
   );
 };

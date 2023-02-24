@@ -76,7 +76,7 @@ const Products = () => {
                           <button
                             className="btn btn-success"
                             onClick={() =>
-                              addToCart(product.product_id, user_id, "10")
+                              addToCart(product.product_id, user_id, "1")
                             }
                           >
                             Add to cart

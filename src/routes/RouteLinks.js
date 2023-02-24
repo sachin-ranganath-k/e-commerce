@@ -6,13 +6,11 @@ import AddBrand from "../admin/components/Brand/AddBrand";
 import ShowBrand from "../admin/components/Brand/ShowBrand";
 import AddShowCat from "../admin/components/Category/AddShowCat";
 import Dashboard from "../admin/components/Dashboard/Dashboard";
-import FileUpload from "../admin/components/FileUpload";
 import ShowOrders from "../admin/components/Orders/ShowOrders";
 import AddProduct from "../admin/components/Product/AddProduct";
 import UserCart from "../user/components/cart/UserCart";
 
 import Products from "../user/components/Products/Products";
-import RegisterLogin from "../user/components/RegisterLoginLogout/RegisterLogin";
 import UserLogin from "../user/components/RegisterLoginLogout/UserLogin";
 import UserLogout from "../user/components/RegisterLoginLogout/UserLogout";
 import UserRegister from "../user/components/RegisterLoginLogout/UserRegister";
