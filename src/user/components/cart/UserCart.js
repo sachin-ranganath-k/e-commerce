@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
@@ -11,14 +11,34 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import UserNavbar from "../UserNavbar/UserNavbar";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItemFromCart } from "../../redux/userActions/UserActions";
+import { useNavigate } from "react-router";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   const { cartItemsofPerson } = useSelector((state) => state.UserReducer.cart);
+  const [items, setItems]=useState([]);
+
+  useEffect(()=>{
+    setItems(cartItemsofPerson)
+  },[cartItemsofPerson, items]);
+
 
   const deleteItem = (cartId) => {
    dispatch(deleteItemFromCart(cartId))
   };
+
+  // const updateQuantity = (id, value) => {
+  //   setItems((prevItems) =>
+  //     prevItems.map((item) =>
+  //       item.product_id === id
+  //         ? { ...item, quantity: item.quantity + value }
+  //         : item
+  //     )
+  //   );
+  // };
+  
+
 
   return (
     <>
@@ -68,8 +88,12 @@ const Cart = () => {
                         style={{ width: "20%" }}
                         min="1"
                         defaultValue="1"
+                       
                       />
+                     
+                     {/* <button onClick={() => updateQuantity(item.product_id, 1)}>Update</button> */}
                     </div>
+                    {/* {item.quantity} */}
                   </div>
                   <div className="col-md-3">
                     <div style={{ marginTop: "5%" }}>
@@ -93,7 +117,7 @@ const Cart = () => {
       </List>
       {cartItemsofPerson.length>0 && (
         <div style={{ textAlign: "center", margin: "2%" }}>
-          <Button variant="contained" color="warning">
+          <Button variant="contained" color="warning" onClick={()=>navigate("/checkout")}>
             Checkout
           </Button>
         </div>

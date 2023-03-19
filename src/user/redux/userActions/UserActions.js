@@ -6,18 +6,21 @@ import {
   FETCH_PRODUCTS_API,
   GET_REGISTERED_USERS_API,
   REGISTER_USER_SUCCESS_API,
+  ORDERS_LIST_API
 } from "../../../admin/AdminEndPoints/AdminEndPoints";
 import {
   ADD_TO_CART_LOADING,
   ADD_TO_CART_STATUS,
   DELETE_ITEM_FROM_CART,
   FETCH_CART_ITEMS_OF_PERSON,
+  FETCH_MY_ORDERS,
   FETCH_PRODUCTS,
   FETCH_PRODUCTS_LOADING,
   FETCH_SINGLE_USER_SUCCESS,
   FETCH_USERS_SUCCESS,
   LOAD_REGISTER_LOGIN,
   REGISTER_USER_SUCCESS,
+  UPDATE_ITEM_QUANTITY,
 } from "./UserActionConstants";
 
 
@@ -114,11 +117,42 @@ export const fetchItemsFromCartOfPerson = (user_id) => {
   };
 };
 
+export const fetchOrders = (user_id) => {
+  return function (dispatch) {
+  //   dispatch({ type: ADD_TO_CART_LOADING });
+    axios
+      .get(`${ORDERS_LIST_API}?user_id=${user_id}`)
+      .then((res) => {
+           dispatch({ type: FETCH_MY_ORDERS, payload: res.data });
+        })
+      .catch((err) => {
+         console.log("Error");
+      });
+  };
+};
+
+
 export const deleteItemFromCart = (itemId) => {
   return function (dispatch) {
     // dispatch({ type: ADD_TO_CART_LOADING });
     axios
       .get(`${DELETE_ITEM_FROM_CART_API}?cart_id=${itemId}`)
+      .then((res) => {
+        // console.log(res);
+        dispatch({ type: DELETE_ITEM_FROM_CART, payload: itemId });
+      })
+      .catch((err) => {
+        // console.log("Error");
+      });
+  };
+};
+
+
+export const updateQuantity = (itemId, qty) => {
+  return function (dispatch) {
+    // dispatch({ type: ADD_TO_CART_LOADING });
+    axios
+      .patch(`${UPDATE_ITEM_QUANTITY}?cart_id=${itemId}`, qty)
       .then((res) => {
         // console.log(res);
         dispatch({ type: DELETE_ITEM_FROM_CART, payload: itemId });

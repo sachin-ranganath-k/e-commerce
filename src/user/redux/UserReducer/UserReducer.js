@@ -3,6 +3,7 @@ import {
   ADD_TO_CART_STATUS,
   DELETE_ITEM_FROM_CART,
   FETCH_CART_ITEMS_OF_PERSON,
+  FETCH_MY_ORDERS,
   FETCH_PRODUCTS,
   FETCH_PRODUCTS_LOADING,
   FETCH_SINGLE_USER_SUCCESS,
@@ -20,6 +21,7 @@ const initialState = {
     isUserRegisterSuccess: false,
   },
   productsList: [],
+  myOrders: [],
   cart: {
     cartItemsofPerson: [],
     addToCartStatus: false,
@@ -133,6 +135,12 @@ const UserReducer = (state = initialState, action) => {
           ...state.cart,
           cartItemsofPerson: filteredItem,
         },
+      };
+
+    case FETCH_MY_ORDERS:
+      return {
+        ...state,
+        myOrders: action.payload,
       };
 
     default:

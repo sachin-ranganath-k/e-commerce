@@ -45,13 +45,19 @@ export const FETCH_PRODUCTS_API ="http://gangadharpoly.org/ecom/admin/product%20
 
 
 //Cart
-export const ADD_TO_CART_API="http://gangadharpoly.org/ecom/user/cart/add_cart_api.php"
-export const FETCH_ITEMS_FROM_CART_OF_PERSON_API="http://gangadharpoly.org/ecom/user/cart/get_cart_api.php"
-export const DELETE_ITEM_FROM_CART_API="http://gangadharpoly.org/ecom/user/cart/delete_cart_api.php"
+export const ADD_TO_CART_API="http://gangadharpoly.org/ecom/user/cart/add_cart_api.php";
+export const FETCH_ITEMS_FROM_CART_OF_PERSON_API="http://gangadharpoly.org/ecom/user/cart/get_cart_api.php";
+export const DELETE_ITEM_FROM_CART_API="http://gangadharpoly.org/ecom/user/cart/delete_cart_api.php";
+export const UPDATE_ITEM_QUANTITY_API="http://gangadharpoly.org/ecom/user/cart/put_cart_api.php";
+export const CLEAR_CART_API="http://gangadharpoly.org/ecom/user/cart/clear_cart_api.php"
 
 
 
 
 //User
-export const REGISTER_USER_SUCCESS_API="http://gangadharpoly.org/ecom/user/user/user_register_api.php"
-export const GET_REGISTERED_USERS_API="http://gangadharpoly.org/ecom/user/user/get_user_register_api.php"
+export const REGISTER_USER_SUCCESS_API="http://gangadharpoly.org/ecom/user/user/user_register_api.php";
+export const GET_REGISTERED_USERS_API="http://gangadharpoly.org/ecom/user/user/get_user_register_api.php";
+
+//Orders
+export const ORDER_NOW_API="http://gangadharpoly.org/ecom/user/order/add_order.php";
+export const ORDERS_LIST_API="http://gangadharpoly.org/ecom/user/order/get_orders_list_api.php";

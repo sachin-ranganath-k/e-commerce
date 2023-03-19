@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminLogin from "../admin/components/AdminLogin";
 import AdminLogout from "../admin/components/AdminLogout";
 import AddBrand from "../admin/components/Brand/AddBrand";
-import ShowBrand from "../admin/components/Brand/ShowBrand";
 import AddShowCat from "../admin/components/Category/AddShowCat";
 import Dashboard from "../admin/components/Dashboard/Dashboard";
 import ShowOrders from "../admin/components/Orders/ShowOrders";
 import AddProduct from "../admin/components/Product/AddProduct";
+import CartCheckout from "../user/components/cart/CartCheckout";
 import UserCart from "../user/components/cart/UserCart";
+import MyOrders from "../user/components/orders/MyOrders";
+import OrderPlaced from "../user/components/orders/OrderPlaced";
 
 import Products from "../user/components/Products/Products";
 import UserLogin from "../user/components/RegisterLoginLogout/UserLogin";
@@ -38,7 +40,10 @@ const RouteLinks = () => {
           <Route path="/yetToDevelop" element={<YetToDevelop />} />
           <Route path="/userDashboard" element={<Products />} />
           <Route path="/myProfile" element={<UserProfile />} />
+          <Route path="/myOrders" element={<MyOrders />} />
           <Route path="/cart" element={<UserCart />} />
+          <Route path="/checkout" element={<CartCheckout />} />
+          <Route path="/orderPlaced" element={<OrderPlaced />} />
 
 
 
