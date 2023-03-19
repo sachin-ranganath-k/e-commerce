@@ -27,9 +27,8 @@ const CartCheckout = () => {
         .post(`${ORDER_NOW_API}`, JSON.stringify(item))
         .then((res) => {
           handleClearCart();
-          console.log("Cart cleared..!", res);
           navigate("/orderPlaced");
-          //window.location.reload();
+          window.location.reload();
         })
         .catch((err) => {
           console.log("cccc", err);
