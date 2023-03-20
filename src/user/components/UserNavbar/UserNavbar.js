@@ -41,7 +41,7 @@ const UserNavbar = () => {
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Link
-              to="/yetToDevelop"
+              to="/myOrders"
               style={{ textDecoration: "none", color: "white" }}
             >
               My Orders

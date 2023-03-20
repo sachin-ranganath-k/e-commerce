@@ -10,6 +10,7 @@ import AddProduct from "../admin/components/Product/AddProduct";
 import CartCheckout from "../user/components/cart/CartCheckout";
 import UserCart from "../user/components/cart/UserCart";
 import MyOrders from "../user/components/orders/MyOrders";
+import OrderInvoice from "../user/components/orders/OrderInvoice";
 import OrderPlaced from "../user/components/orders/OrderPlaced";
 
 import Products from "../user/components/Products/Products";
@@ -19,13 +20,12 @@ import UserRegister from "../user/components/RegisterLoginLogout/UserRegister";
 import UserProfile from "../user/components/UserProfile/UserProfile";
 import YetToDevelop from "../user/components/YetToDevelop";
 
-
 const RouteLinks = () => {
   return (
     <div>
       <Router>
         <Routes>
-        {/* <Route path="/" element={<FileUpload />} /> */}
+          {/* <Route path="/" element={<FileUpload />} /> */}
           <Route path="/" element={<AdminLogin />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addCategory" element={<AddShowCat />} />
@@ -44,9 +44,7 @@ const RouteLinks = () => {
           <Route path="/cart" element={<UserCart />} />
           <Route path="/checkout" element={<CartCheckout />} />
           <Route path="/orderPlaced" element={<OrderPlaced />} />
-
-
-
+          <Route path="orderInvoice/:orderId" element={<OrderInvoice />} />
         </Routes>
       </Router>
     </div>

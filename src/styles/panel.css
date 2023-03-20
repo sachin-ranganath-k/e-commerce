@@ -1,0 +1,29 @@
+.panel-default {
+    border-color: #ddd;
+  }
+  .panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  }
+  .panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    background-color: #337ab7;
+    border-color: #040000;
+  }
+  .panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+  }
+  .panel-body {
+    padding: 15px;
+  }
+  
