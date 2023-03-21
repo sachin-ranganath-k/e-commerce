@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import UserNavbar from "../UserNavbar/UserNavbar";
 import "../../../styles/panel.css";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOrders } from "../../redux/userActions/UserActions";
 import "../../../styles/noPrint.css";
+import { initializeLogin, isAuthenticUser } from "../../authentication/Session";
 
 const OrderInvoice = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const userId = sessionStorage.getItem("userId");
   const { orderId } = useParams();
@@ -14,12 +16,16 @@ const OrderInvoice = () => {
 
   useEffect(() => {
     dispatch(fetchOrders(userId));
+    initializeLogin();
   }, [dispatch, userId]);
+
+  if (!isAuthenticUser()) {
+    navigate("/user-login");
+  }
 
   let item = myOrders.find((order) => order.invoice_number === orderId);
 
-  let deliveryStatus =
-    item?.status === "0" ? "Yet to deliver" : "Order Delivered";
+  let deliveryStatus = item?.status === "0" ? "Pending" : "Order Delivered";
 
   const printInvoice = () => {
     window.print();
@@ -62,8 +68,8 @@ const OrderInvoice = () => {
                       <p>Ordered On : {item?.date}</p>
                     </div>
                     <div className="col-md-6">
-                      <p>Delivered On : 01-01-2023 </p>
                       <p>Delivery Status : {deliveryStatus}</p>
+                      <p>Delivered On : {item?.delivered_on} </p>
                     </div>
                   </div>
                 </div>
