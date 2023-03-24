@@ -16,6 +16,8 @@ const MyOrders = () => {
 
   const visibleOrders = myOrders.slice(indexOfFirstOrder, indexOfLastOrder);
 
+  console.log("ttt", myOrders)
+
   useEffect(() => {
     dispatch(fetchOrders(userId));
   }, [dispatch, userId]);

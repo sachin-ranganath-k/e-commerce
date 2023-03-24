@@ -28,6 +28,7 @@ export const FETCH_ADMIN_API ="http://gangadharpoly.org/ecom/admin/admin_login/g
 //Orders
 export const TODAY_ORDERS_API ="http://gangadharpoly.org/ecom/admin/order_list/get_today_order_list.php";
 export const TOTAL_ORDERS_API ="http://gangadharpoly.org/ecom/admin/order_list/get_total_order_list.php";
+export const UPDATE_ORDER_DELIVERED_API = "http://gangadharpoly.org/ecom/admin/order_list/update_order_delivered.php";
 
 
 //Categories

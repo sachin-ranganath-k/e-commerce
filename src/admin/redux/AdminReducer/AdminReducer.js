@@ -10,6 +10,7 @@ import {
   BRAND_ADDED_SUCCESS_STATUS,
   CLEAN_UP_DATA,
   TOTAL_ORDERS_LIST,
+  UPDATE_AS_DELIVERED_SUCCESS,
 } from "../AdminActions/AdminActionConstants";
 
 const initialState = {
@@ -24,7 +25,10 @@ const initialState = {
     newBrandAddedSuccess: false,
   },
   todayOrdersList: [],
-  totalOrdersList:[]
+  totalOrdersList: [],
+  updateOrder: {
+    isSuccess: false,
+  },
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -92,15 +96,28 @@ const AdminReducer = (state = initialState, action) => {
         todayOrdersList: action.payload,
       };
 
-      case TOTAL_ORDERS_LIST:
-        return {
-          ...state,
-          totalOrdersList: action.payload,
-        };
-  
+    case TOTAL_ORDERS_LIST:
+      return {
+        ...state,
+        totalOrdersList: action.payload,
+      };
+
+    case UPDATE_AS_DELIVERED_SUCCESS:
+      return {
+        ...state,
+        totalOrdersList: state.totalOrdersList.map((order) =>
+          order.invoice_number === action.payload.orderId
+            ? action.payload
+            : order
+        ),
+        updateOrder: {
+          ...state.updateOrder,
+          isSuccess: true,
+        },
+      };
 
     case CLEAN_UP_DATA:
-      return{}
+      return {};
 
     default:
       return state;

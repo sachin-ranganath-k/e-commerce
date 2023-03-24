@@ -21,6 +21,8 @@ const CartCheckout = () => {
   const userId = sessionStorage.getItem("userId");
   const navigate = useNavigate();
 
+  console.log(cartItemsofPerson)
+
   const handleOrderNow = () => {
     for (let item of cartItemsofPerson) {
       axios

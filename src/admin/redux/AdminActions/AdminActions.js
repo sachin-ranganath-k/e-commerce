@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 import {
   ADD_BRAND_API,
   ADD_CATEGORY_API,
@@ -7,6 +7,7 @@ import {
   SHOW_CATEGORY_API,
   TODAY_ORDERS_API,
   TOTAL_ORDERS_API,
+  UPDATE_ORDER_DELIVERED_API,
 } from "../../AdminEndPoints/AdminEndPoints";
 import {
   ADD_BRANDS,
@@ -20,8 +21,8 @@ import {
   SHOW_CATEGORIES,
   TODAY_ORDERS_LIST,
   TOTAL_ORDERS_LIST,
+  UPDATE_AS_DELIVERED_SUCCESS,
 } from "./AdminActionConstants";
-
 
 export const fetchAdmins = () => {
   return async function (dispatch) {
@@ -72,7 +73,7 @@ export const addCategory = (payload) => {
         dispatch({ type: CATEGORY_ADDED_SUCCESS_STATUS, payload: true });
       })
       .catch((err) => {
-      //  console.log(err);
+        //  console.log(err);
       });
   };
 };
@@ -83,10 +84,10 @@ export const addBrand = (payload) => {
       .post(`${ADD_BRAND_API}`, payload)
       .then((res) => {
         dispatch({ type: ADD_BRANDS, payload });
-       dispatch({ type: BRAND_ADDED_SUCCESS_STATUS, payload: true });
+        dispatch({ type: BRAND_ADDED_SUCCESS_STATUS, payload: true });
       })
       .catch((err) => {
-      //  console.log(err);
+        //  console.log(err);
       });
   };
 };
@@ -99,7 +100,7 @@ export const todayOrders = () => {
         dispatch({ type: TODAY_ORDERS_LIST, payload: res.data });
       })
       .catch((err) => {
-       // console.log("Err")
+        // console.log("Err")
       });
   };
 };
@@ -112,15 +113,26 @@ export const totalOrders = () => {
         dispatch({ type: TOTAL_ORDERS_LIST, payload: res.data });
       })
       .catch((err) => {
-      //  console.log("Err")
+        //  console.log("Err")
       });
   };
 };
 
+export const updateAsDelivered = (orderId) => {
+  return async function (dispatch) {
+    await axios
+      .get(`${UPDATE_ORDER_DELIVERED_API}?invoice_number=${orderId}`)
+      .then((res) => {
+        dispatch({ type: UPDATE_AS_DELIVERED_SUCCESS, payload: orderId });
+      })
+      .catch((err) => {
+        //  console.log(err);
+      });
+  };
+};
 
-
-export const cleanUpData=()=>{
-  return{
-    type:CLEAN_UP_DATA
-  }
-}
+export const cleanUpData = () => {
+  return {
+    type: CLEAN_UP_DATA,
+  };
+};
