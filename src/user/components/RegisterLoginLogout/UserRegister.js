@@ -21,14 +21,16 @@ import { Link } from "react-router-dom";
 const theme = createTheme();
 
 const UserRegister = () => {
-  const [mobileExists, setMobileExists]=useState(false);
-  const [isRegisterSuccess, setIsRegisterSuccess]=useState(false);
+  const [mobileExists, setMobileExists] = useState(false);
+  const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUsers());
   }, [isRegisterSuccess]);
 
-  const { isRegisterLoginLoading } = useSelector((state) => state.UserReducer.userRegister);
+  const { isRegisterLoginLoading } = useSelector(
+    (state) => state.UserReducer.userRegister
+  );
   const allUsers = useSelector(
     (state) => state.UserReducer.userRegister.allUsers
   );
@@ -56,14 +58,20 @@ const UserRegister = () => {
 
   const isDataValid = () => {
     let isValid = true;
-    if (userName.current.value === "" || !patterns.userName.test(userName.current.value)) {
+    if (
+      userName.current.value === "" ||
+      !patterns.userName.test(userName.current.value)
+    ) {
       setFieldError((prevState) => ({ ...prevState, userNameError: true }));
       setTimeout(() => {
         setFieldError((prevState) => ({ ...prevState, userNameError: false }));
       }, 4000);
       isValid = false;
     }
-    if (userMobile.current.value === "" || !patterns.userContact.test(userMobile.current.value)) {
+    if (
+      userMobile.current.value === "" ||
+      !patterns.userContact.test(userMobile.current.value)
+    ) {
       setFieldError((prevState) => ({ ...prevState, userMobileError: true }));
       setTimeout(() => {
         setFieldError((prevState) => ({
@@ -73,7 +81,10 @@ const UserRegister = () => {
       }, 4000);
       isValid = false;
     }
-    if (shopAddress.current.value === "" || !patterns.shopAddress.test(shopAddress.current.value)) {
+    if (
+      shopAddress.current.value === "" ||
+      !patterns.shopAddress.test(shopAddress.current.value)
+    ) {
       setFieldError((prevState) => ({ ...prevState, shopAddressError: true }));
       setTimeout(() => {
         setFieldError((prevState) => ({
@@ -83,7 +94,10 @@ const UserRegister = () => {
       }, 4000);
       isValid = false;
     }
-    if (city.current.value === "" || !patterns.userName.test(city.current.value)) {
+    if (
+      city.current.value === "" ||
+      !patterns.userName.test(city.current.value)
+    ) {
       setFieldError((prevState) => ({ ...prevState, cityError: true }));
       setTimeout(() => {
         setFieldError((prevState) => ({ ...prevState, cityError: false }));
@@ -91,7 +105,9 @@ const UserRegister = () => {
       isValid = false;
     }
 
-    if (pinCode.current.value === "" || !patterns.pinCode.test(pinCode.current.value)
+    if (
+      pinCode.current.value === "" ||
+      !patterns.pinCode.test(pinCode.current.value)
     ) {
       setFieldError((prevState) => ({ ...prevState, pinCodeError: true }));
       setTimeout(() => {
@@ -116,16 +132,25 @@ const UserRegister = () => {
   const submitData = (e) => {
     e.preventDefault();
     const formData = {
-      user_name: userName.current.value,
+      user_name: userName.current.value
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" "),
       contact_num: userMobile.current.value,
-      shop_address: shopAddress.current.value,
-      city: city.current.value,
+      shop_address: shopAddress.current.value
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" "),
+      city: city.current.value
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" "),
       pincode: pinCode.current.value,
     };
     if (isDataValid()) {
       if (isMobileExists()) {
-       setMobileExists(true);
-        return
+        setMobileExists(true);
+        return;
       }
 
       dispatch(registerUser(JSON.stringify(formData)));
@@ -169,9 +194,8 @@ const UserRegister = () => {
               User Register
             </Typography>
             <Box component="form" noValidate sx={{ mt: 1 }}>
-              {
-                mobileExists &&  AlertMessage("error", "Mobile number already exists..!")
-              }
+              {mobileExists &&
+                AlertMessage("error", "Mobile number already exists..!")}
               {isRegisterSuccess &&
                 AlertMessage("success", "Registered Successfully..!")}
               <TextField

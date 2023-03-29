@@ -7,6 +7,9 @@ import AddShowCat from "../admin/components/Category/AddShowCat";
 import Dashboard from "../admin/components/Dashboard/Dashboard";
 import ShowOrders from "../admin/components/Orders/ShowOrders";
 import AddProduct from "../admin/components/Product/AddProduct";
+import UpdateUserDetail from "../admin/components/UpdateUserDetails/UpdateUserDetail";
+import UpdateUserDetails from "../admin/components/UpdateUserDetails/UpdateUserDetails";
+import { UpdateUserLayout } from "../admin/components/UpdateUserDetails/UpdateUserLayout";
 import CartCheckout from "../user/components/cart/CartCheckout";
 import UserCart from "../user/components/cart/UserCart";
 import MyOrders from "../user/components/orders/MyOrders";
@@ -33,6 +36,8 @@ const RouteLinks = () => {
           <Route path="/addProduct" element={<AddProduct />} />
           <Route path="/adminLogout" element={<AdminLogout />} />
           <Route path="/orders" element={<ShowOrders />} />
+          <Route path="/updateUserDetails" element={<UpdateUserDetails />} />
+          <Route path="/updateUserDetails/:userId" element={<UpdateUserDetails />} />
 
           <Route path="/user-register" element={<UserRegister />} />
           <Route path="/user-login" element={<UserLogin />} />

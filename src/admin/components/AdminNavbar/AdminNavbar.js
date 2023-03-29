@@ -43,7 +43,7 @@ const AdminNavbar = () => {
               Add Product
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <Link to="/updateUserDetails" style={{ textDecoration: "none", color: "white" }}>
               Update Details
             </Link>
           </div>

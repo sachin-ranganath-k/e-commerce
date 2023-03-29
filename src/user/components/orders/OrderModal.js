@@ -1,14 +1,19 @@
 import React from "react";
 import { Modal, Button } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateAsDelivered } from "../../../admin/redux/AdminActions/AdminActions";
 
 const OrderDetailsModal = ({ order, open, onClose }) => {
   const dispatch = useDispatch();
+  const { isSuccess } = useSelector((state) => state.AdminReducer.updateOrder);
 
   const handleOrderDeliver = (orderId) => {
-    dispatch(updateAsDelivered(orderId))
+    dispatch(updateAsDelivered(orderId));
   };
+
+  if (isSuccess) {
+    alert("Order Delivered..!");
+  }
 
   return (
     <div>
